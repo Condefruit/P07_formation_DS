@@ -6,7 +6,7 @@ import s3fs
 # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
 fs = s3fs.S3FileSystem(anon=False)
 
-st.write("AWS ID:", st.secrets["AWS_ACCESS_KEY_ID"])
+st.write("AWS ID:", st.secrets["db_username"])
 
 # Retrieve file contents.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
