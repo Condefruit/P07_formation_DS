@@ -17,7 +17,7 @@ def read_file(filename):
 
 st.title('Welcome to the credit answer dashboard')
 
-df = read_file('p07oc/X_test.csv')
+df = read_file('s3://p07oc/X_test.csv')
 
 # Print results.
 st.dataframe(df)
