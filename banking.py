@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas
 import s3fs
 
 # Create connection object.
@@ -12,11 +13,11 @@ st.write("AWS ID:", st.secrets["AWS_ACCESS_KEY_ID"])
 @st.experimental_memo(ttl=600)
 def read_file(filename):
     with fs.open(filename) as f:
-        return f.read().decode("utf-8")
+        return pd.read(f)
 
 st.title('Welcome to the credit answer dashboard')
 
-df = read_file("p07oc/X_test.csv")
+df = read_file('p07oc/X_test.csv')
 
 # Print results.
 st.dataframe(df)
