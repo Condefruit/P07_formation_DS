@@ -53,7 +53,7 @@ yhat = RFinal.predict_proba([list(X_test.iloc[customer_number])])
 result = yhat[0][1]
 # summarize
 
-categories = list(X_train_0)
+categories = list(X_train)
 
 st.subheader("Feature importance")
 
