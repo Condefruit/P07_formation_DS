@@ -49,7 +49,7 @@ RFinal = DecisionTreeClassifier(
 
 RFinal.fit(X_train, y_train)
 
-yhat = RFinal.predict_proba([list(X_test.iloc[customer_number])])
+yhat = RFinal.predict_proba([list(X_test.iloc[int(customer_number)])])
 result = yhat[0][1]
 # summarize
 
