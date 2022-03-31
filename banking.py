@@ -14,7 +14,7 @@ def read_file(filename):
     with fs.open(filename) as f:
         return f.read().decode("utf-8")
 
-df = read_file("p07oc/X_test.csv.csv")
+df = read_file("p07oc/X_test.csv")
 
 st.dataframe(df)
 
