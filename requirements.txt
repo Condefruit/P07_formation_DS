@@ -4,3 +4,4 @@ s3fs==2022.2.0
 numpy==1.22.2
 scikit-learn==1.0.2
 plotly-express==0.4.1
+sklearn==0.0
