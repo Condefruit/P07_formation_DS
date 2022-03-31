@@ -28,6 +28,9 @@ y_test = read_file("p07oc/y_test.csv")
 
 st.dataframe(X_train.head(3))
 
+cus = int(len(X_test))
+st.write(cus)
+
 st.sidebar.write('The number of available client is ', cus)
 customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
 
