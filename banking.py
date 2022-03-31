@@ -5,6 +5,9 @@ import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 import plotly.express as px
 
+# Use the full page instead of a narrow central column
+st.set_page_config(layout="wide")
+
 # Create connection object.
 # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
 fs = s3fs.S3FileSystem(anon=False)
@@ -57,11 +60,18 @@ categories = list(X_train)
 
 st.subheader("Feature importance")
 
-select_element = st.selectbox('Pick a category', categories)
+select_element1 = st.selectbox('Pick a first category', categories)
+select_element2 = st.selectbox('Pick a second category', categories)
 
-st.subheader("Description of the category")
-fig = px.scatter(X_test, x=select_element)
-st.write(fig)
+col1, col2 = st.columns(2)
+
+col1.subheader("Description of the category")
+fig1 = px.scatter(X_test, x=select_element1)
+col1.write(fig1, use_column_width=True)
+
+col2.subheader("Description of the category")
+fig2= px.scatter(X_test, x=select_element2)
+col2.write(fig2, use_column_width=True)
 
 
 
