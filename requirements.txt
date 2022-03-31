@@ -1,7 +1,7 @@
 click==8
 streamlit==1.8.0
 s3fs==2022.2.0
-numpy==1.22.2
+numpy==1.21.5
 scikit-learn==1.0.2
 plotly-express==0.4.1
 sklearn==0.0
