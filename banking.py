@@ -12,7 +12,7 @@ fs = s3fs.S3FileSystem(anon=False)
 
 def read_file(filename):
     with fs.open(filename) as f:
-        return pd.read_csv(f).decode("utf-8")
+        return pd.read_csv(f)
 
 df = read_file("p07oc/X_test.csv")
 
