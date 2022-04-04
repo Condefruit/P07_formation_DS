@@ -34,8 +34,10 @@ st.dataframe(X_train.head(3))
 cus = int(len(X_test))
 st.write(cus)
 
-st.sidebar.write('The number of available client is ', cus)
+st.sidebar.write('The number of available client number is ', cus)
 customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
+
+st.sidebar.markdown("""---""")
 
 threshold = st.sidebar.slider("Choose a threshold", min_value=0.0, max_value = 1.0, value=0.5, step = 0.01)
 
@@ -55,6 +57,8 @@ RFinal.fit(X_train, y_train)
 yhat = RFinal.predict_proba([list(X_test.iloc[int(customer_number)])])
 result = yhat[0][1]
 # summarize
+
+st.write(result)
 
 categories = list(X_train)
 
