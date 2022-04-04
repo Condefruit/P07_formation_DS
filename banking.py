@@ -69,11 +69,6 @@ st.dataframe(X_train.head(3))
 
 st.write(cus)
 
-
-
-
-
-
 if customer_number != "" :
     st.markdown(
     f"""
@@ -81,15 +76,21 @@ if customer_number != "" :
     """
 )
 
+st.write(1)
+
 RFinal = DecisionTreeClassifier(
     random_state=1, min_samples_split=2, max_features="sqrt"
 )
+
+st.write(2)
 
 RFinal.fit(X_train, y_train)
 
 yhat = RFinal.predict_proba([list(X_test.iloc[int(customer_number)])])
 result = yhat[0][1]
 # summarize
+
+st.write(3)
 
 st.write(result)
 
