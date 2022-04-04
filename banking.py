@@ -8,6 +8,11 @@ import plotly.express as px
 # Use the full page instead of a narrow central column
 st.set_page_config(layout="wide")
 
+# ----------------------------------------
+# ----------------------------------------
+
+#Loading data
+
 # Create connection object.
 # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
 fs = s3fs.S3FileSystem(anon=False)
@@ -20,26 +25,54 @@ def read_file(filename):
     with fs.open(filename) as f:
         return pd.read_csv(f)
 
-st.title('Welcome to the credit answer dashboard !')
-
-st.write('## This application predict if the client will refund or not his loan')
 
 X_train = read_file("p07oc/X_train.csv")
 y_train = read_file("p07oc/y_train.csv")
 X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
 
-st.dataframe(X_train.head(3))
+# General
+# ----------------------------------------
+# ----------------------------------------
 
 cus = int(len(X_test))
-st.write(cus)
+
+# Sidebar
+# ----------------------------------------
+# ----------------------------------------
 
 st.sidebar.write('The number of available client number is ', cus)
 customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
 
+# Separation
 st.sidebar.markdown("""---""")
 
 threshold = st.sidebar.slider("Choose a threshold", min_value=0.0, max_value = 1.0, value=0.5, step = 0.01)
+
+
+st.sidebar.markdown("""---""")
+
+amount = X_test['AMT_CREDIT']
+st.sidebar.write(amount)
+
+
+# Main page
+# ----------------------------------------
+# ----------------------------------------
+
+
+st.title('Welcome to the credit answer dashboard !')
+
+st.write('## This application predict if the client will refund or not his loan')
+
+st.dataframe(X_train.head(3))
+
+st.write(cus)
+
+
+
+
+
 
 if customer_number != "" :
     st.markdown(
