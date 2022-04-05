@@ -73,10 +73,6 @@ st.sidebar.write(amount)
 # ----------------------------------------
 # ----------------------------------------
 
-test = X_train.copy()
-test = test.set_index('Unnamed: 0')
-st.dataframe(test.head(3))
-
 
 st.title('Welcome to the credit answer dashboard !')
 
