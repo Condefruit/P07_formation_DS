@@ -26,7 +26,7 @@ def read_file(filename):
         return pd.read_csv(f)
 
 
-X_train = read_csv("p07oc/X_train.csv", index_col=[0])
+X_train = read_file("p07oc/X_train.csv")
 y_train = read_file("p07oc/y_train.csv")
 X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
@@ -41,6 +41,8 @@ cus = int(len(X_test))
 # Sidebar
 # ----------------------------------------
 # ----------------------------------------
+
+st.multiselect('bloobla', X_test)
 
 st.sidebar.write('The number of available client number is ', cus)
 customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
