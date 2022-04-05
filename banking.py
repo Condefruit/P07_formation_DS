@@ -31,6 +31,8 @@ y_train = read_file("p07oc/y_train.csv")
 X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
 
+ X_train = X_train.set_index('Unnamed: 0')
+
 # General
 # ----------------------------------------
 # ----------------------------------------
@@ -42,10 +44,11 @@ cus = int(len(X_test))
 # ----------------------------------------
 # ----------------------------------------
 
-st.multiselect('bloobla', X_test, disabled=True)
 
 st.sidebar.write('The number of available client number is ', cus)
-customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
+#customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
+customers = X_train.index
+customer_number = st.selectbox('Pick a first category', customers)
 
 if customer_number != "" :
     st.markdown(
