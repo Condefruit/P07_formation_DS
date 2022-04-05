@@ -72,6 +72,7 @@ st.sidebar.write(amount)
 
 test = X_train.copy()
 test.set_index('Unnamed: 0')
+test = test.drop('NAME_CONTRACT_TYPE', axis = 1)
 st.dataframe(test.head(1))
 
 
