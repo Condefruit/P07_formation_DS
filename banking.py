@@ -26,10 +26,10 @@ def read_file(filename):
         return pd.read_csv(f)
 
 
-X_train = read_file("p07oc/X_train.csv")
-y_train = read_file("p07oc/y_train.csv")
-X_test = read_file("p07oc/X_test.csv")
-y_test = read_file("p07oc/y_test.csv")
+X_train = read_file("p07oc/X_train.csv", index_col=[0])
+y_train = read_file("p07oc/y_train.csv", index_col=[0])
+X_test = read_file("p07oc/X_test.csv", index_col=[0])
+y_test = read_file("p07oc/y_test.csv", index_col=[0])
 
 # General
 # ----------------------------------------
@@ -37,12 +37,20 @@ y_test = read_file("p07oc/y_test.csv")
 
 cus = int(len(X_test))
 
+
 # Sidebar
 # ----------------------------------------
 # ----------------------------------------
 
 st.sidebar.write('The number of available client number is ', cus)
 customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
+
+if customer_number != "" :
+    st.markdown(
+    f"""
+    * Client number : {customer_number}
+    """
+)
 
 # Separation
 st.sidebar.markdown("""---""")
@@ -52,7 +60,7 @@ threshold = st.sidebar.slider("Choose a threshold", min_value=0.0, max_value = 1
 
 st.sidebar.markdown("""---""")
 
-amount = X_test['AMT_CREDIT']
+amount = X_test['AMT_CREDIT'].iloc[customer_number]
 st.sidebar.write(amount)
 
 
@@ -69,12 +77,6 @@ st.dataframe(X_train.head(3))
 
 st.write(cus)
 
-if customer_number != "" :
-    st.markdown(
-    f"""
-    * Client number : {customer_number}
-    """
-)
 
 st.write(1)
 
