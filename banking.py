@@ -84,10 +84,15 @@ RFinal = DecisionTreeClassifier(
 
 st.write(2)
 
-RFinal.fit(X_train, y_train)
+a = 0
 
-yhat = RFinal.predict_proba([list(X_test.iloc[int(customer_number)])])
-result = yhat[0][1]
+if a = 1 :
+    # Communicating with the Heroku API
+    url = "https://p07oc.herokuapp.com/predict"
+    client_datas = X_test.loc[customer_number].to_dict()
+    response_api = requests.post(url, json=client_datas)
+
+
 # summarize
 
 st.write(3)
