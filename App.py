@@ -45,5 +45,3 @@ st.write('yes')
     
 if __name__ == '__main__':
     socketio.run(app)
-
-python3 __init__.py
