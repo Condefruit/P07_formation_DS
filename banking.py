@@ -32,7 +32,7 @@ X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
 
 X_train = X_train.set_index('Unnamed: 0')
-
+X_test = X_test.set_index('Unnamed: 0')
 # General
 # ----------------------------------------
 # ----------------------------------------
