@@ -26,10 +26,10 @@ def read_file(filename):
         return pd.read_csv(f)
 
 
-X_train = read_file("p07oc/X_train.csv", index_col=[0])
-y_train = read_file("p07oc/y_train.csv", index_col=[0])
-X_test = read_file("p07oc/X_test.csv", index_col=[0])
-y_test = read_file("p07oc/y_test.csv", index_col=[0])
+X_train = read_csv("p07oc/X_train.csv", index_col=[0])
+y_train = read_file("p07oc/y_train.csv")
+X_test = read_file("p07oc/X_test.csv")
+y_test = read_file("p07oc/y_test.csv")
 
 # General
 # ----------------------------------------
