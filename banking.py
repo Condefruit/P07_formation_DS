@@ -64,7 +64,7 @@ threshold = st.sidebar.slider("Choose a threshold", min_value=0.0, max_value = 1
 
 st.sidebar.markdown("""---""")
 
-amount = X_test['AMT_CREDIT'].iloc[customer_number]
+amount = X_test['AMT_CREDIT'].loc[customer_number]
 st.sidebar.write(amount)
 
 
