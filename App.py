@@ -44,5 +44,6 @@ def explain():
 st.write('yes')
     
 if __name__ == '__main__':
-    app.run()
+    socketio.run(app)
 
+python3 __init__.py
