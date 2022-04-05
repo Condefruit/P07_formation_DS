@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import shap
 import pickle5 as pickle
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from lightgbm import LGBMClassifier
 
 # Crée l’objet application Flask, qui contient les données de l’application et les méthodes.
@@ -25,13 +25,19 @@ def prediction():
     data = request.get_json()
     prediction_value = np.array2string(model.predict_proba(data)[0, 1])
 
+    return jsonify(prediction_value)
+
 # Instruction de routage
 @app.route('/explain', methods=["POST"])
-def prediction():
-    data = request.get_json()
-    prediction_value = np.array2string(model.predict_proba(data)[0, 1])
+def explain():
+    data_client = request.json
+    data_client_values = np.array([list(data_client.values())])
+    data_client_features = list(data_client.keys())
+    explainer_shap = shap.TreeExplainer(model)
+    shap_values_client = explainer_shap.shap_values(data_client_values)
+    shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
 
-    return jsonify(prediction_value)
+    return jsonify(shap_values_client_serie.to_dict())
     
 st.write('yes')
     
