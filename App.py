@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import shap
 import joblib
-from flask import Flask, request,
+from flask import Flask, request
 
 
 st.write("ok tout continu de marcher")
