@@ -86,7 +86,7 @@ st.write(2)
 
 a = 0
 
-if a = 1 :
+if a == 1 :
     # Communicating with the Heroku API
     url = "https://p07oc.herokuapp.com/predict"
     client_datas = X_test.loc[customer_number].to_dict()
