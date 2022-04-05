@@ -97,8 +97,6 @@ if a == 1 :
 
 st.write(3)
 
-st.write(result)
-
 categories = list(X_train)
 
 st.subheader("Feature importance")
