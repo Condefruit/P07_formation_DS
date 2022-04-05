@@ -42,7 +42,7 @@ cus = int(len(X_test))
 # ----------------------------------------
 # ----------------------------------------
 
-st.multiselect('bloobla', X_test)
+st.multiselect('bloobla', X_test, disabled=True)
 
 st.sidebar.write('The number of available client number is ', cus)
 customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
