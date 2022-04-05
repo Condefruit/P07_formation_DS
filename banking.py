@@ -38,7 +38,7 @@ X_test = X_test.set_index('Unnamed: 0')
 # ----------------------------------------
 
 cus = X_test.shape[0]
-customers = X_train.index
+customers = X_test.index
 
 
 # Sidebar
