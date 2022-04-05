@@ -37,7 +37,8 @@ X_train = X_train.set_index('Unnamed: 0')
 # ----------------------------------------
 # ----------------------------------------
 
-cus = int(len(X_test))
+cus = X_test.shape[0]
+customers = X_train.index
 
 
 # Sidebar
@@ -46,9 +47,7 @@ cus = int(len(X_test))
 
 
 st.sidebar.write('The number of available client number is ', cus)
-#customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
-customers = X_train.index
-customer_number = st.selectbox('Pick a first category', customers)
+customer_number = st.sidebar.selectbox('Pick a first category', customers)
 
 if customer_number != "" :
     st.markdown(
