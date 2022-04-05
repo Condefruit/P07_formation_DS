@@ -1,4 +1,3 @@
 git add .
-git commit -m "First commit28"
+git commit -m "update"
 git push heroku main
-heroku logs --tail
