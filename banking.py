@@ -80,19 +80,20 @@ url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
 headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 client_datas = [X_test.loc[customer_number].values.tolist()]
 j_data = json.dumps(client_datas) # json produit toujours des objets str
-response_api = requests.post(url, data=j_data, headers=headers) # post --> send datas to the server
-st.write('reponse ok', response_api)
-risk = float(response_api.text.split('"')[1])
+response_api_preditct = requests.post(url, data=j_data, headers=headers) # post --> send datas to the server
+#st.write('reponse ok', response_api_preditct)
+risk = float(response_api_preditct.text.split('"')[1])
 st.write(risk)
 
 # Sending the API the scaled data and getting a dict of the shap values
 url = "https://p07oc.herokuapp.com//explain"
 data_client = X_test.loc[customer_number].to_dict()
-response_api = requests.post(url, json=data_client)
+response_api_explain = requests.post(url, json=data_client)
+#st.write('reponse ok', response_api_explain)
 
 # We'll use a dataframe for convenience, sorting etc
-explanation_client = pd.DataFrame({'shap_value': response_api.json().values(),
-                                       'feature_name': response_api.json().keys()})
+explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
+                                       'feature_name': response_api_explain.json().keys()})
 
  # Getting most important lines using absolute values
 explanation_client['shap_value_abs'] = explanation_client.shap_value.map(abs)
