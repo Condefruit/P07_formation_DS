@@ -78,7 +78,7 @@ st.title('Welcome to the credit answer dashboard !')
 
 st.write('## This application predict if the client will refund or not his loan')
 
-st.dataframe(X_train.loc[customer_number])
+st.dataframe(X_test.loc[customer_number])
 
 st.write(cus)
 
