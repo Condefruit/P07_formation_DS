@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import shap
-import pickle5 as pickle
+import pickle
 from lightgbm import LGBMClassifier
 from flask import Flask, request, jsonify
 
