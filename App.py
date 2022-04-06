@@ -1,4 +1,3 @@
-import streamlit as st
 import numpy as np
 import pandas as pd
 import shap
@@ -15,10 +14,8 @@ app.config["DEBUG"] = True
 @app.route("")
 def hello_world():
     return "<p>Hello, World!</p>"
-    
-    
-st.write('yes')
+
     
 if __name__ == '__main__':
-app.run()
+    app.run()
 
