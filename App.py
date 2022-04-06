@@ -23,7 +23,8 @@ def prediction():
     print(data)
     prediction_value = model.predict_proba(data)
 
-    return jsonify(prediction_value) # Serialize data to JSON
+    #return jsonify(prediction_value) # Serialize data to JSON
+    return prediction_value
 
 # Instruction de routage
 @app.route('/explain', methods=["POST"])
