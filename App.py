@@ -38,7 +38,7 @@ def explain():
     print(model)
     explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
     print("4", explainer_shap) 
-    shap_values_client = explainer_shap.shap_values(predic_model[:-1].transform(data_client_values))
+    shap_values_client = explainer_shap.shap_values(model[:-1].transform(data_client_values))
     print("5", shap_values_client)
     shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
     print("6", shap_values_client_serie)
