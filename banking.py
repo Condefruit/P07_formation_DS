@@ -73,7 +73,7 @@ st.write('## This application predict if the client will refund or not his loan'
 
 st.dataframe(X_test.loc[customer_number])
 
-a = 0
+a = 1
 if a == 1 :
     # Communicating with the Heroku API
     url = "https://p07oc.herokuapp.com/predict"
