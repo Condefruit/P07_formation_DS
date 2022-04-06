@@ -4,9 +4,16 @@ import s3fs
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 import plotly.express as px
+import json
+import requests
 
 # Use the full page instead of a narrow central column
 st.set_page_config(layout="wide")
+
+# ----------------------------------------
+# ----------------------------------------
+
+#Loading data
 
 # Create connection object.
 # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
@@ -20,40 +27,67 @@ def read_file(filename):
     with fs.open(filename) as f:
         return pd.read_csv(f)
 
-st.title('Welcome to the credit answer dashboard !')
-
-st.write('## This application predict if the client will refund or not his loan')
 
 X_train = read_file("p07oc/X_train.csv")
 y_train = read_file("p07oc/y_train.csv")
 X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
 
-st.dataframe(X_train.head(3))
+X_train = X_train.set_index('Unnamed: 0')
+X_test = X_test.set_index('Unnamed: 0')
 
-cus = int(len(X_test))
-st.write(cus)
+# General
+# ----------------------------------------
+# ----------------------------------------
 
-st.sidebar.write('The number of available client is ', cus)
-customer_number = st.sidebar.number_input('Please select the customer number', min_value=0, max_value=cus, value=int(cus/2), step=1)
+cus = X_test.shape[0]
+customers = X_test.index
+
+
+# Sidebar
+# ----------------------------------------
+# ----------------------------------------
+
+
+st.sidebar.write('The number of available client number is ', cus)
+customer_number = st.sidebar.selectbox('Select the customer number', customers)
+
+# Separation
+st.sidebar.markdown("""---""")
 
 threshold = st.sidebar.slider("Choose a threshold", min_value=0.0, max_value = 1.0, value=0.5, step = 0.01)
 
-if customer_number != "" :
-    st.markdown(
-    f"""
-    * Client number : {customer_number}
-    """
-)
 
-RFinal = DecisionTreeClassifier(
-    random_state=1, min_samples_split=2, max_features="sqrt"
-)
+st.sidebar.markdown("""---""")
 
-RFinal.fit(X_train, y_train)
+amount = X_test['AMT_CREDIT'].loc[customer_number]
+st.sidebar.write(amount)
 
-yhat = RFinal.predict_proba([list(X_test.iloc[int(customer_number)])])
-result = yhat[0][1]
+
+# Main page
+# ----------------------------------------
+# ----------------------------------------
+
+
+st.title('Welcome to the credit answer dashboard !')
+
+st.write('## This application predict if the client will refund or not his loan')
+
+st.dataframe(X_test.loc[customer_number])
+
+
+# Communicating with the Heroku API
+url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
+headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+client_datas = [X_test.loc[customer_number].values.tolist()]
+j_data = json.dumps(client_datas) # json produit toujours des objets str
+response_api = requests.post(url, data=j_data, headers=headers) # post --> send datas to the server
+st.write('reponse ok', response_api)
+risk = float(response_api.text.split('"')[1])
+st.write(risk)
+
+
+
 # summarize
 
 categories = list(X_train)
