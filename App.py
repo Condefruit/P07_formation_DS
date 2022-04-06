@@ -20,7 +20,7 @@ model = pickle.load(pickle_in)
 def prediction():
     data = request.get_json() # Parses the incoming JSON request data and returns it. / convertit l’objet JSON en données Python
     #prediction_value = np.array2string(model.predict_proba(data)[0, 1]) # retourne la proba de la class 1
-    prediction_value = model.predict_proba(data)[0, 1]
+    prediction_value = model.predict_proba(data)
 
     return jsonify(prediction_value) # Serialize data to JSON
 
