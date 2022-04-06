@@ -50,13 +50,6 @@ customers = X_test.index
 st.sidebar.write('The number of available client number is ', cus)
 customer_number = st.sidebar.selectbox('Select the customer number', customers)
 
-if customer_number != "" :
-    st.markdown(
-    f"""
-    * Client number : {customer_number}
-    """
-)
-
 # Separation
 st.sidebar.markdown("""---""")
 
@@ -79,14 +72,6 @@ st.title('Welcome to the credit answer dashboard !')
 st.write('## This application predict if the client will refund or not his loan')
 
 st.dataframe(X_test.loc[customer_number])
-
-st.write(cus)
-
-RFinal = DecisionTreeClassifier(
-    random_state=1, min_samples_split=2, max_features="sqrt"
-)
-
-a = 0
 
 if a == 1 :
     # Communicating with the Heroku API
