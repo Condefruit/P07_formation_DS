@@ -80,7 +80,7 @@ if a == 1 :
     url = "https://p07oc.herokuapp.com/predict"
     client_datas = [X_test.loc[customer_number].values.tolist()]
     st.write(client_datas)
-    j_data = json.dumps(data_client)
+    j_data = json.dumps(client_datas)
     response_api = requests.post(url, data=j_data)
     risk = float(response_api.text.split('"')[1])
     st.write(risk)
