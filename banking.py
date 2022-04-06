@@ -95,7 +95,11 @@ st.write('reponse ok', response_api_explain)
 explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
                                        'feature_name': response_api_explain.json().keys()})
 
- # Getting most important lines using absolute values
+st.dataframe(explanation_client.head(2))
+
+nb_features_explain = 5
+
+# Getting most important lines using absolute values
 explanation_client['shap_value_abs'] = explanation_client.shap_value.map(abs)
 # Tagging positive and negative values and setting a color for plotting
 explanation_client['color'] = explanation_client.shap_value > 0
