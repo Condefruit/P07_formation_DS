@@ -31,7 +31,7 @@ def explain():
     data_client = request.json
     print("1", data_client)
     data_client_values = np.array([list(data_client.values())])
-    print("2", ata_client_values)
+    print("2", data_client_values)
     data_client_features = list(data_client.keys())
     print("3", data_client_features)
     explainer_shap = shap.TreeExplainer(model)
