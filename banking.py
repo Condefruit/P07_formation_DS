@@ -75,16 +75,15 @@ st.write('## This application predict if the client will refund or not his loan'
 
 st.dataframe(X_test.loc[customer_number])
 
-a = 1
-if a == 1 :
-    # Communicating with the Heroku API
-    url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
-    client_datas = [X_test.loc[customer_number].values.tolist()]
-    j_data = json.dumps(client_datas) # json produit toujours des objets str
-    response_api = requests.post(url, data=j_data) # post --> send datas to the server
-    st.write('reponse ok', response_api)
-    #risk = float(response_api.text.split('"')[1])
-    #st.write(risk)
+
+# Communicating with the Heroku API
+url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
+client_datas = [X_test.loc[customer_number].values.tolist()]
+j_data = json.dumps(client_datas) # json produit toujours des objets str
+response_api = requests.post(url, data=j_data) # post --> send datas to the server
+st.write('reponse ok', response_api)
+#risk = float(response_api.text.split('"')[1])
+#st.write(risk)
 
 
 
