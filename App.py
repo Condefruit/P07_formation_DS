@@ -18,10 +18,11 @@ model = pickle.load(pickle_in)
 # Instruction de routage '/predict' = chemin predict ++> "POST" pour recevoir des données utilisateur
 @app.route('/predict', methods=["POST"])
 def prediction():
-    data = request.get_json()
-    prediction_value = np.array2string(model.predict_proba(data)[0, 1])
+    data = request.get_json() # Parses the incoming JSON request data and returns it. / convertit l’objet JSON en données Python
+    #prediction_value = np.array2string(model.predict_proba(data)[0, 1]) # retourne la proba de la class 1
+    prediction_value = model.predict_proba(data)[0, 1]
 
-    return jsonify(prediction_value)
+    return jsonify(prediction_value) # Serialize data to JSON
 
 # Instruction de routage
 @app.route('/explain', methods=["POST"])
