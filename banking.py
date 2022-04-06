@@ -4,6 +4,7 @@ import s3fs
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 import plotly.express as px
+import json
 
 # Use the full page instead of a narrow central column
 st.set_page_config(layout="wide")
