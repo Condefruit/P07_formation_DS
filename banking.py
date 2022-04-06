@@ -77,7 +77,7 @@ a = 1
 if a == 1 :
     # Communicating with the Heroku API
     url = "https://p07oc.herokuapp.com/predict"
-    client_datas = X_test.loc[customer_number].values.to_dict()
+    client_datas = [X_test.loc[customer_number].values.tolist()]
     st.write(client_datas)
     j_data = json.dumps(data_client)
     response_api = requests.post(url, data=j_data)
