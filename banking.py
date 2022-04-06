@@ -78,13 +78,13 @@ st.dataframe(X_test.loc[customer_number])
 a = 1
 if a == 1 :
     # Communicating with the Heroku API
-    url = "https://p07oc.herokuapp.com/predict"
+    url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
     client_datas = [X_test.loc[customer_number].values.tolist()]
-    j_data = json.dumps(client_datas)
-    response_api = requests.post(url, data=j_data)
+    j_data = json.dumps(client_datas) # json produit toujours des objets str
+    response_api = requests.post(url, data=j_data) # post --> send datas to the server
     st.write(response_api)
-    #risk = float(response_api.text.split('"')[1])
-    #st.write(risk)
+    risk = float(response_api.text.split('"')[1])
+    st.write(risk)
 
 
 
