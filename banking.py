@@ -33,6 +33,7 @@ y_test = read_file("p07oc/y_test.csv")
 
 X_train = X_train.set_index('Unnamed: 0')
 X_test = X_test.set_index('Unnamed: 0')
+
 # General
 # ----------------------------------------
 # ----------------------------------------
@@ -77,18 +78,13 @@ st.title('Welcome to the credit answer dashboard !')
 
 st.write('## This application predict if the client will refund or not his loan')
 
-st.dataframe(X_train.head(3))
+st.dataframe(X_train.loc[customer_number])
 
 st.write(cus)
-
-
-st.write(1)
 
 RFinal = DecisionTreeClassifier(
     random_state=1, min_samples_split=2, max_features="sqrt"
 )
-
-st.write(2)
 
 a = 0
 
@@ -100,8 +96,6 @@ if a == 1 :
 
 
 # summarize
-
-st.write(3)
 
 categories = list(X_train)
 
