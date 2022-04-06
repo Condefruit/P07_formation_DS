@@ -29,11 +29,13 @@ def prediction():
 @app.route('/explain', methods=["POST"])
 def explain():
     data_client = request.json
-    print("1", data_client)
+    #print("1", data_client)
     data_client_values = np.array([list(data_client.values())])
-    print("2", data_client_values)
+    #print("2", data_client_values)
     data_client_features = list(data_client.keys())
-    print("3", data_client_features)
+    #print("3", data_client_features)
+    print("Ca bug à la prochaine ligne")
+    print(model)
     explainer_shap = shap.TreeExplainer(model)
     print("4", explainer_shap) 
     shap_values_client = explainer_shap.shap_values(data_client_values)
