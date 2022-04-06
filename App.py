@@ -20,5 +20,5 @@ def hello_world():
 st.write('yes')
     
 #if __name__ == '__main__':
-app.run()
+#app.run()
 
