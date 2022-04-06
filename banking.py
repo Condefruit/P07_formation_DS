@@ -82,7 +82,7 @@ if a == 1 :
     client_datas = [X_test.loc[customer_number].values.tolist()]
     j_data = json.dumps(client_datas) # json produit toujours des objets str
     response_api = requests.post(url, data=j_data) # post --> send datas to the server
-    st.write(response_api)
+    st.write('reponse ok', response_api)
     #risk = float(response_api.text.split('"')[1])
     #st.write(risk)
 
