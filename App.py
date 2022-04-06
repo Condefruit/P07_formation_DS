@@ -16,6 +16,6 @@ app.config["DEBUG"] = True
     
 st.write('yes')
     
-if __name__ == '__main__':
-    app.run()
+#if __name__ == '__main__':
+app.run()
 
