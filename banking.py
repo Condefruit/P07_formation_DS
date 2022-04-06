@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 import plotly.express as px
 import json
+import requests
 
 # Use the full page instead of a narrow central column
 st.set_page_config(layout="wide")
@@ -79,7 +80,7 @@ if a == 1 :
     # Communicating with the Heroku API
     url = "https://p07oc.herokuapp.com/predict"
     client_datas = [X_test.loc[customer_number].values.tolist()]
-    st.write(client_datas)
+    #st.write(client_datas)
     j_data = json.dumps(client_datas)
     response_api = requests.post(url, data=j_data)
     risk = float(response_api.text.split('"')[1])
