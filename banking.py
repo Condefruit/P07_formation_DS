@@ -77,9 +77,9 @@ with colb:
     new_amount = st.number_input('New credit amount', min_value = 1)
 
 update = st.sidebar.button('Change Amount')
-    if update:
-        ab = new_amount
-        update = False
+if update:
+    ab = new_amount
+    update = False
 
 
 # Communication with the API
