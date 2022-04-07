@@ -58,16 +58,21 @@ st.sidebar.markdown("""---""")
 
 threshold = st.sidebar.slider("Choose a threshold", min_value=0.0, max_value = 1.0, value=0.5, step = 0.01)
 
-
-st.sidebar.markdown("""---""")
-
-amount = X_test['AMT_CREDIT'].loc[customer_number]
-st.sidebar.write(amount)
-
 st.sidebar.markdown("""---""")
 
 nb_features_explain = st.sidebar.slider('Number of explanation features', min_value=1, max_value = 15, value=5, step = 1)
 
+st.sidebar.markdown("""---""")
+
+amount = X_test['AMT_CREDIT'].loc[customer_number]
+
+cola, colb = st.sidebar.columns(2)
+
+with cola:
+    st.sidebar.write(amount)
+
+with colb:
+    new_amount = st.number_input('New credit amount', min_value = 1)
 
 # Communication with the API
 # ----------------------------------------
@@ -89,8 +94,6 @@ response_api_explain = requests.post(url, json=data_client)
 # We'll use a dataframe for convenience, sorting etc
 explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
                                        'feature_name': response_api_explain.json().keys()})
-
-st.dataframe(explanation_client.head(2))
 
 # Getting most important lines using absolute values
 explanation_client['shap_value_abs'] = explanation_client.shap_value.map(abs)
