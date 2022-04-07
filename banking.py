@@ -65,16 +65,22 @@ nb_features_explain = st.sidebar.slider('Number of explanation features', min_va
 st.sidebar.markdown("""---""")
 
 amount = X_test['AMT_CREDIT'].loc[customer_number]
+ab = 6
 
 cola, colb = st.sidebar.columns(2)
 
 with cola:
-    st.write(amount)
+    st.header(amount)
+    st.write(ab)
 
 with colb:
     new_amount = st.number_input('New credit amount', min_value = 1)
 
-st.button('Change Amount')
+update = st.sidebar.button('Change Amount')
+    if update:
+        ab = new_amount
+        update = False
+
 
 # Communication with the API
 # ----------------------------------------
