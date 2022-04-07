@@ -49,7 +49,7 @@ customers = X_test.index
 # ----------------------------------------
 
 
-st.sidebar.write('Available client number is ', cus)
+st.sidebar.write('Available number of clients ', cus)
 
 customer_number = st.sidebar.selectbox('Select the customer ID', customers)
 
@@ -130,9 +130,9 @@ st.write('This application predict if the selected client will statistically ref
 
 st.write('the risk of fail refunding is :', risk)
 if risk < threshold :
-    st.success("### according to the thresold, the loan offer is: acceptep")
+    st.success("#### according to the thresold, the loan offer is: acceptep")
 else :
-    st.error("### according to the thresold, the loan offer is: acceptep refused")
+    st.error("#### according to the thresold, the loan offer is: acceptep refused")
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
@@ -143,7 +143,7 @@ with col1:
     st.subheader('Client datas')
     st.write('')
     st.write('')
-    st.write('')
+    st.write('Scroll to check ones of the', X_test.shape[1], 'client features')
     st.write('')
     st.dataframe(X_test.loc[customer_number])
 
