@@ -5,6 +5,7 @@ import numpy as np
 import plotly.express as px
 import json
 import requests
+import plotly.graph_objects as go
 
 # Use the full page instead of a narrow central column
 st.set_page_config(layout="wide")
@@ -116,7 +117,7 @@ explanation_client['raw_data'] = X_test.loc[customer_number][explanation_client.
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
                                        + explanation_client.raw_data.round(2).astype(str)
 # Setup figure
-fig = px.Figure(px.Bar(x=explanation_client['shap_value'],
+fig = go.Figure(go.Bar(x=explanation_client['shap_value'],
                            y=explanation_client['bar_labels'],
                            orientation='h',
                            marker={'color': explanation_client['color']},
