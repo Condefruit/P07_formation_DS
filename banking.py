@@ -68,16 +68,9 @@ st.sidebar.markdown("""---""")
 nb_features_explain = st.sidebar.slider('Number of explanation features', min_value=1, max_value = X_test.shape[1], value=5, step = 1)
 
 
-# Main page
+# Communication with the API
 # ----------------------------------------
 # ----------------------------------------
-
-
-st.title('Welcome to the credit answer dashboard !')
-
-st.write('## This application predict if the client will refund or not his loan')
-
-st.dataframe(X_test.loc[customer_number])
 
 
 # Communicating with the Heroku API
@@ -118,22 +111,36 @@ explanation_client.sort_values('shap_value_abs', ascending=True, inplace=True)
 explanation_client['raw_data'] = X_test.loc[customer_number][explanation_client.feature_name].iloc[0]
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
                                        + explanation_client.raw_data.round(2).astype(str)
-# Setup figure
-fig = go.Figure(go.Bar(x=explanation_client['shap_value'],
+
+
+# Main page
+# ----------------------------------------
+# ----------------------------------------                                       
+
+
+st.title('Welcome to the credit answer dashboard !')
+
+st.write('## This application predict if the client will refund or not his loan')
+
+col1, col2 = st.beta_columns(2)
+
+with col1:
+    st.subheader('client datas')
+    st.dataframe(X_test.loc[customer_number])
+
+with col2:
+    # Setup figure
+    fig = go.Figure(go.Bar(x=explanation_client['shap_value'],
                            y=explanation_client['bar_labels'],
                            orientation='h',
                            marker={'color': explanation_client['color']},
                            ),
                     )
-fig.update_layout(xaxis_title="Influence sur le niveau de risque",
+    fig.update_layout(xaxis_title="Influence sur le niveau de risque",
                       )
 
-st.plotly_chart(fig,
+    st.plotly_chart(fig,
                     use_container_width=True)
-
-
-
-
 
 
 # summarize
