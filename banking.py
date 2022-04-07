@@ -79,7 +79,6 @@ with colb:
 update = st.sidebar.button('Change Amount')
 if update:
     ab = new_amount
-    update = False
 
 
 # Communication with the API
