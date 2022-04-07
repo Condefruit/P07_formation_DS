@@ -125,7 +125,7 @@ else :
     answer = 'refused'
 
 
-st.write('the actual risk is :', risk, "according to the thresold, the loan offer is:" answer)
+st.write('the actual risk is :', risk, "according to the thresold, the loan offer is:", answer)
 
 col1, col2 = st.columns(2)
 
