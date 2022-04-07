@@ -69,10 +69,12 @@ amount = X_test['AMT_CREDIT'].loc[customer_number]
 cola, colb = st.sidebar.columns(2)
 
 with cola:
-    st.sidebar.write(amount)
+    st.write(amount)
 
 with colb:
     new_amount = st.number_input('New credit amount', min_value = 1)
+
+st.button('Change Amount')
 
 # Communication with the API
 # ----------------------------------------
