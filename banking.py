@@ -143,6 +143,8 @@ with col1:
     st.subheader('Client datas')
     st.write('')
     st.write('')
+    st.write('')
+    st.write('')
     st.dataframe(X_test.loc[customer_number])
 
 with col2:
