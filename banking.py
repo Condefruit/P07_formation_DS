@@ -137,7 +137,7 @@ else :
 
 st.write('## the actual risk is :', risk, "according to the thresold, the loan offer is:", answer)
 
-st.write('test') st.write('test')
+st.write('test'), st.write('test')
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
