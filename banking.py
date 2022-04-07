@@ -130,9 +130,11 @@ st.title('Welcome to the credit answer dashboard !')
 st.write('#### This application predict if the client will refund or not his loan')
 
 if risk < threshold :
-    st.success('## the actual risk is :', risk, "according to the thresold, the loan offer is: acceptep")
+    st.write(risk)
+    st.success("## according to the thresold, the loan offer is: acceptep")
 else :
-    st.error('## the actual risk is :', risk, "according to the thresold, the loan offer is: refused")
+    st.write(risk)
+    st.error("## according to the thresold, the loan offer is: acceptep refused")
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
