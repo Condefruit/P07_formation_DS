@@ -126,15 +126,13 @@ explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
 
 
 st.title('Welcome to the credit answer dashboard !')
+st.write('This application predict if the selected client will statistically refund or not his loan')
 
-st.write('#### This application predict if the client will refund or not his loan')
-
+st.write('the risk of fail refunding is :', risk)
 if risk < threshold :
-    st.write(risk)
-    st.success("## according to the thresold, the loan offer is: acceptep")
+    st.success("### according to the thresold, the loan offer is: acceptep")
 else :
-    st.write(risk)
-    st.error("## according to the thresold, the loan offer is: acceptep refused")
+    st.error("### according to the thresold, the loan offer is: acceptep refused")
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
@@ -143,6 +141,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.subheader('Client datas')
+    st.write('')
     st.write('')
     st.dataframe(X_test.loc[customer_number])
 
