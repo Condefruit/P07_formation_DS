@@ -130,9 +130,9 @@ st.write('This application predict if the selected client will statistically ref
 
 st.write('the risk of fail refunding is :', risk)
 if risk < threshold :
-    st.success("#### according to the thresold, the loan offer is: acceptep")
+    st.success("#### According to the thresold, the loan offer is Acceptep")
 else :
-    st.error("#### according to the thresold, the loan offer is: acceptep refused")
+    st.error("#### According to the thresold, the loan offer is Refused")
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
@@ -149,6 +149,8 @@ with col1:
 
 with col2:
     st.subheader('Features importance')
+
+    st.write('Scroll to check ones of the', X_test.shape[1], 'client features')
     # Setup figure
     fig = go.Figure(go.Bar(x=explanation_client['shap_value'],
                            y=explanation_client['bar_labels'],
@@ -156,7 +158,6 @@ with col2:
                            marker={'color': explanation_client['color']},
                            ),
                     )
-    #fig.update_layout(xaxis_title="Influence sur le niveau de risque",                      )
 
     st.plotly_chart(fig,
                     use_container_width=False)
