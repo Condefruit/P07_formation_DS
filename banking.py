@@ -63,6 +63,10 @@ st.sidebar.markdown("""---""")
 amount = X_test['AMT_CREDIT'].loc[customer_number]
 st.sidebar.write(amount)
 
+st.sidebar.markdown("""---""")
+
+nb_features_explain = st.sidebar.slider('Number of explanation features', min_value=1, max_value = X_test.shape[1], value=5, step = 1)
+
 
 # Main page
 # ----------------------------------------
@@ -97,8 +101,6 @@ explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().val
                                        'feature_name': response_api_explain.json().keys()})
 
 st.dataframe(explanation_client.head(2))
-
-nb_features_explain = 5
 
 # Getting most important lines using absolute values
 explanation_client['shap_value_abs'] = explanation_client.shap_value.map(abs)
