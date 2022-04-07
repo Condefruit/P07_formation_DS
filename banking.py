@@ -156,9 +156,8 @@ with col2:
                            orientation='h',
                            marker={'color': explanation_client['color']},
                            ),
-                    ),
-    #fig.update_layout(xaxis_title="Influence sur le niveau de risque",
-                      )
+                    )
+    #fig.update_layout(xaxis_title="Influence sur le niveau de risque",                      )
 
     st.plotly_chart(fig,
                     use_container_width=False)
