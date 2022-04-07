@@ -127,7 +127,7 @@ explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
 
 st.title('Welcome to the credit answer dashboard !')
 
-st.write('## This application predict if the client will refund or not his loan')
+st.write('#### This application predict if the client will refund or not his loan')
 
 if risk < threshold :
     answer = 'accepted'
@@ -135,7 +135,12 @@ else :
     answer = 'refused'
 
 
-st.write('the actual risk is :', risk, "according to the thresold, the loan offer is:", answer)
+st.write('## the actual risk is :', risk, "according to the thresold, the loan offer is:", answer)
+
+st.write('test') st.write('test')
+
+
+# st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
@@ -152,7 +157,7 @@ with col2:
                            marker={'color': explanation_client['color']},
                            ),
                     )
-    fig.update_layout(xaxis_title="Influence sur le niveau de risque",
+    #fig.update_layout(xaxis_title="Influence sur le niveau de risque",
                       )
 
     st.plotly_chart(fig,
