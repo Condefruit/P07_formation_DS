@@ -129,7 +129,7 @@ st.title('Welcome to the credit answer dashboard !')
 
 st.write('## This application predict if the client will refund or not his loan')
 
-if risk > threshold :
+if risk < threshold :
     answer = 'accepted'
 else :
     answer = 'refused'
@@ -156,7 +156,7 @@ with col2:
                       )
 
     st.plotly_chart(fig,
-                    use_container_width=True)
+                    use_container_width=False)
 
 
 # summarize
