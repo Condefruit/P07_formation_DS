@@ -49,8 +49,9 @@ customers = X_test.index
 # ----------------------------------------
 
 
-st.sidebar.write('The number of available client number is ', cus)
-customer_number = st.sidebar.selectbox('Select the customer number', customers)
+st.sidebar.write('Available client number is ', cus)
+
+customer_number = st.sidebar.selectbox('Select the customer ID', customers)
 
 # Separation
 st.sidebar.markdown("""---""")
@@ -65,13 +66,12 @@ st.sidebar.write(amount)
 
 st.sidebar.markdown("""---""")
 
-nb_features_explain = st.sidebar.slider('Number of explanation features', min_value=1, max_value = X_test.shape[1], value=5, step = 1)
+nb_features_explain = st.sidebar.slider('Number of explanation features', min_value=1, max_value = 15, value=5, step = 1)
 
 
 # Communication with the API
 # ----------------------------------------
 # ----------------------------------------
-
 
 # Communicating with the Heroku API
 url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
@@ -79,15 +79,12 @@ headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 client_datas = [X_test.loc[customer_number].values.tolist()]
 j_data = json.dumps(client_datas) # json produit toujours des objets str
 response_api_preditct = requests.post(url, data=j_data, headers=headers) # post --> send datas to the server
-#st.write('reponse ok', response_api_preditct)
 risk = float(response_api_preditct.text.split('"')[1])
-st.write(risk)
 
 # Sending the API the scaled data and getting a dict of the shap values
 url = "https://p07oc.herokuapp.com//explain"
 data_client = X_test.loc[customer_number].to_dict()
 response_api_explain = requests.post(url, json=data_client)
-st.write('reponse ok', response_api_explain)
 
 # We'll use a dataframe for convenience, sorting etc
 explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
@@ -122,13 +119,22 @@ st.title('Welcome to the credit answer dashboard !')
 
 st.write('## This application predict if the client will refund or not his loan')
 
-col1, col2 = st.beta_columns(2)
+if risk > threshold :
+    answer = 'accepted'
+else :
+    answer = 'refused'
+
+
+st.write('the actual risk is :', risk, "according to the thresold, the loan offer is:" answer)
+
+col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader('client datas')
+    st.subheader('Client datas')
     st.dataframe(X_test.loc[customer_number])
 
 with col2:
+    st.subheader('Features importance')
     # Setup figure
     fig = go.Figure(go.Bar(x=explanation_client['shap_value'],
                            y=explanation_client['bar_labels'],
