@@ -13,28 +13,38 @@ st.set_page_config(layout="wide")
 # ----------------------------------------
 # ----------------------------------------
 
-#Loading data
+# #Loading data from amazon / desactivated to avoid useless data consu
 
-# Create connection object.
-# `anon=False` means not anonymous, i.e. it uses access keys to pull data.
-fs = s3fs.S3FileSystem(anon=False)
+# # Create connection object.
+# # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+# fs = s3fs.S3FileSystem(anon=False)
 
-# Retrieve file contents.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-@st.experimental_memo(ttl=600)
+# # Retrieve file contents.
+# # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+# @st.experimental_memo(ttl=600)
 
-def read_file(filename):
-    with fs.open(filename) as f:
-        return pd.read_csv(f)
+# def read_file(filename):
+#     with fs.open(filename) as f:
+#         return pd.read_csv(f)
 
 
-X_train = read_file("p07oc/X_train.csv")
-y_train = read_file("p07oc/y_train.csv")
-X_test = read_file("p07oc/X_test.csv")
-y_test = read_file("p07oc/y_test.csv")
+# X_train = read_file("p07oc/X_train.csv")
+# y_train = read_file("p07oc/y_train.csv")
+# X_test = read_file("p07oc/X_test.csv")
+# y_test = read_file("p07oc/y_test.csv")
 
-X_train = X_train.set_index('Unnamed: 0')
-X_test = X_test.set_index('Unnamed: 0')
+# X_train = X_train.set_index('Unnamed: 0')
+# X_test = X_test.set_index('Unnamed: 0')
+
+# ----------------------------------------
+# ----------------------------------------
+
+# #Loading data from a local source
+
+X_test = pd.read_csv("X_test.csv", index_col=[0])
+y_test = pd.read_csv("y_test.csv", index_col=[0])
+
+
 
 # General
 # ----------------------------------------
@@ -130,9 +140,9 @@ st.write('This application predict if the selected client will statistically ref
 
 st.write('the risk of fail refunding is :', risk)
 if risk < threshold :
-    st.success("#### according to the thresold, the loan offer is: acceptep")
+    st.success("#### According to the thresold, the loan offer is Acceptep")
 else :
-    st.error("#### according to the thresold, the loan offer is: acceptep refused")
+    st.error("#### According to the thresold, the loan offer is Refused")
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
@@ -149,6 +159,7 @@ with col1:
 
 with col2:
     st.subheader('Features importance')
+
     # Setup figure
     fig = go.Figure(go.Bar(x=explanation_client['shap_value'],
                            y=explanation_client['bar_labels'],
@@ -156,7 +167,6 @@ with col2:
                            marker={'color': explanation_client['color']},
                            ),
                     )
-    #fig.update_layout(xaxis_title="Influence sur le niveau de risque",                      )
 
     st.plotly_chart(fig,
                     use_container_width=False)
@@ -164,7 +174,7 @@ with col2:
 
 # summarize
 
-categories = list(X_train)
+categories = list(X_test)
 
 st.subheader("Feature importance")
 
