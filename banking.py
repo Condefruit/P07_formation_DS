@@ -33,9 +33,6 @@ st.set_page_config(layout="wide")
 # X_test = read_file("p07oc/X_test.csv")
 # y_test = read_file("p07oc/y_test.csv")
 
-# X_train = X_train.set_index('Unnamed: 0')
-# X_test = X_test.set_index('Unnamed: 0')
-
 # ----------------------------------------
 # ----------------------------------------
 
@@ -46,8 +43,6 @@ url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main
 
 X_test = pd.read_csv(url_X_test, index_col=[0])
 y_test = pd.read_csv(url_y_test, index_col=[0])
-st.dataframe(X_test.head(3))
-
 
 # General
 # ----------------------------------------
@@ -99,17 +94,17 @@ if update:
 # ----------------------------------------
 
 # Communicating with the Heroku API
-url = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
+urla = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
 headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 client_datas = [X_test.loc[customer_number].values.tolist()]
 j_data = json.dumps(client_datas) # json produit toujours des objets str
-response_api_preditct = requests.post(url, data=j_data, headers=headers) # post --> send datas to the server
+response_api_preditct = requests.post(urla, data=j_data, headers=headers) # post --> send datas to the server
 risk = float(response_api_preditct.text.split('"')[1])
 
 # Sending the API the scaled data and getting a dict of the shap values
-url = "https://p07oc.herokuapp.com//explain"
+urlb = "https://p07oc.herokuapp.com//explain"
 data_client = X_test.loc[customer_number].to_dict()
-response_api_explain = requests.post(url, json=data_client)
+response_api_explain = requests.post(urlb, json=data_client)
 
 # We'll use a dataframe for convenience, sorting etc
 explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
