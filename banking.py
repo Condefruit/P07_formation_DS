@@ -39,7 +39,7 @@ st.set_page_config(layout="wide")
 # ----------------------------------------
 # ----------------------------------------
 
-# #Loading data from a local source
+# #Loading data from a local source ok
 
 X_test = pd.read_csv("X_test.csv", index_col=[0])
 y_test = pd.read_csv("y_test.csv", index_col=[0])
