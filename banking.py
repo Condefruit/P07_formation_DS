@@ -13,36 +13,36 @@ st.set_page_config(layout="wide")
 # ----------------------------------------
 # ----------------------------------------
 
-# #Loading data from amazon / desactivated to avoid useless data consu
+#Loading data from amazon / desactivated to avoid useless data consu
 
-# # Create connection object.
-# # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
-# fs = s3fs.S3FileSystem(anon=False)
+# Create connection object.
+# `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+fs = s3fs.S3FileSystem(anon=False)
 
-# # Retrieve file contents.
-# # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-# @st.experimental_memo(ttl=600)
+# Retrieve file contents.
+# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.experimental_memo(ttl=600)
 
-# def read_file(filename):
-#     with fs.open(filename) as f:
-#         return pd.read_csv(f)
+def read_file(filename):
+    with fs.open(filename) as f:
+        return pd.read_csv(f)
 
 
-# X_train = read_file("p07oc/X_train.csv")
-# y_train = read_file("p07oc/y_train.csv")
-# X_test = read_file("p07oc/X_test.csv")
-# y_test = read_file("p07oc/y_test.csv")
+X_train = read_file("p07oc/X_train.csv")
+y_train = read_file("p07oc/y_train.csv")
+X_test = read_file("p07oc/X_test.csv")
+y_test = read_file("p07oc/y_test.csv")
 
 # ----------------------------------------
 # ----------------------------------------
 
 # #Loading data from a local source
 
-url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test.csv"
-url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test.csv"
+# url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test.csv"
+# url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test.csv"
 
-X_test = pd.read_csv(url_X_test, index_col=[0])
-y_test = pd.read_csv(url_y_test, index_col=[0])
+# X_test = pd.read_csv(url_X_test, index_col=[0])
+# y_test = pd.read_csv(url_y_test, index_col=[0])
 
 # General
 # ----------------------------------------
