@@ -33,6 +33,8 @@ y_train = read_file("p07oc/y_train.csv")
 X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
 
+st.dataframe(X_train.head(3))
+
 X_train = X_train.set_index('Unnamed: 0')
 X_test = X_test.set_index('Unnamed: 0')
 
