@@ -33,6 +33,9 @@ y_train = read_file("p07oc/y_train.csv")
 X_test = read_file("p07oc/X_test.csv")
 y_test = read_file("p07oc/y_test.csv")
 
+X_train = X_train.set_index('Unnamed: 0')
+X_test = X_test.set_index('Unnamed: 0')
+
 # ----------------------------------------
 # ----------------------------------------
 
@@ -43,6 +46,8 @@ y_test = read_file("p07oc/y_test.csv")
 
 # X_test = pd.read_csv(url_X_test, index_col=[0])
 # y_test = pd.read_csv(url_y_test, index_col=[0])
+# st.dataframe(X_test.head(3))
+
 
 # General
 # ----------------------------------------
