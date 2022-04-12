@@ -41,8 +41,8 @@ st.set_page_config(layout="wide")
 
 #Loading data from a local source
 
-url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_y_test_na.csv"
-url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_y_test_na.csv"
+url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test_na.csv"
+url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test_na.csv"
 
 X_test = pd.read_csv(url_X_test, index_col=[0])
 y_test = pd.read_csv(url_y_test, index_col=[0])
