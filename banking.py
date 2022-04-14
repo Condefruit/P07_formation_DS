@@ -43,10 +43,13 @@ st.set_page_config(layout="wide")
 
 url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test_na.csv"
 url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test_na.csv"
+url_def = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/description.csv"
 
 X_test = pd.read_csv(url_X_test, index_col=[0])
 y_test = pd.read_csv(url_y_test, index_col=[0])
+desc = pd.read_csv(url_def)
 
+st.dataframe(desc.head(3))
 
 # General
 # ----------------------------------------
