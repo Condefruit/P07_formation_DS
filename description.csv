@@ -1,0 +1,95 @@
+,col name,Description
+0,NAME_CONTRACT_TYPE,Cash or revolving type of loan
+1,CODE_GENDER,Gender of the client
+2,FLAG_OWN_CAR,1 if a client has a car
+3,FLAG_OWN_REALTY,1 if the client owns a house/flat
+4,CNT_CHILDREN,Number of children the client has
+5,AMT_INCOME_TOTAL,Income of the client
+6,AMT_CREDIT,Credit amount of the loan
+7,AMT_ANNUITY,Loan annuity
+8,AMT_GOODS_PRICE,For consumer loans it is the price of the goods for which the loan is given
+9,DAYS_BIRTH,Number of days since the birth of the client at the time of the application
+10,DAYS_EMPLOYED,How many days before the application the person started current employment
+11,DAYS_REGISTRATION,How many days before the application did client change his registration
+12,DAYS_ID_PUBLISH,How many days before the application did client change the identity document with which he applied for the loan
+13,FLAG_PHONE,1 if the client provided a phone number
+14,FLAG_EMAIL,1 if the client provided a email
+15,CNT_FAM_MEMBERS,How many family members does client have
+16,REGION_RATING_CLIENT,"Our rating of the region where client lives (1,2,3)"
+17,REGION_RATING_CLIENT_W_CITY,"Our rating of the region where client lives with taking city into account (1,2,3)"
+18,REG_REGION_NOT_LIVE_REGION,1 if the client s contact address is different from the permanent client s adress (region)
+19,REG_REGION_NOT_WORK_REGION,1 if the client s working address is different from the permanent client s adress (region)
+20,LIVE_REGION_NOT_WORK_REGION,1 if the client s working address is different from the contact client s adress (region)
+21,REG_CITY_NOT_LIVE_CITY,1 if the client s contact address is different from the permanent client s adress (city)
+22,REG_CITY_NOT_WORK_CITY,1 if the client s working address is different from the permanent client s adress (city)
+23,LIVE_CITY_NOT_WORK_CITY,1 if the client s working address is different from the contact client s adress (city)
+24,EXT_SOURCE_1,Normalized score from external data source
+25,EXT_SOURCE_2,Normalized score from external data source
+26,EXT_SOURCE_3,Normalized score from external data source
+27,OBS_30_CNT_SOCIAL_CIRCLE,How many observation of client s social surroundings with observable 30 DPD (days past due) default
+28,DEF_30_CNT_SOCIAL_CIRCLE,How many observation of client's social surroundings defaulted on 30 DPD (days past due)
+29,OBS_60_CNT_SOCIAL_CIRCLE,How many observation of client's social surroundings with observable 60 DPD (days past due) default
+30,DEF_60_CNT_SOCIAL_CIRCLE,How many observation of client's social surroundings defaulted on 60 (days past due) DPD
+31,FLAG_DOCUMENT_3,1 if client provided document 3
+32,AMT_REQ_CREDIT_BUREAU_HOUR,Number of enquiries to Credit Bureau about the client one hour before applicatio
+33,AMT_REQ_CREDIT_BUREAU_DAY,Number of enquiries to Credit Bureau about the client one day before applicatio
+34,AMT_REQ_CREDIT_BUREAU_WEEK,Number of enquiries to Credit Bureau about the client one week before applicatio
+35,AMT_REQ_CREDIT_BUREAU_MON,Number of enquiries to Credit Bureau about the client one month before applicatio
+36,AMT_REQ_CREDIT_BUREAU_QRT,Number of enquiries to Credit Bureau about the client 3 month before applicatio
+37,AMT_REQ_CREDIT_BUREAU_YEAR,Number of enquiries to Credit Bureau about the client one year before applicatio
+38,NAME_TYPE_SUITE_Children,1 if the client was accompanied by a children
+39,NAME_TYPE_SUITE_Family,1 if the client was accompanied by his family
+40,NAME_TYPE_SUITE_Group of people,1 if the client was accompanied by a group of people
+41,NAME_TYPE_SUITE_Other_A,1 if the client was accompanied by other_A
+42,NAME_TYPE_SUITE_Other_B,1 if the client was accompanied by other B
+43,"NAME_TYPE_SUITE_Spouse, partner",1 if the client was accompanied by a spouse/partner
+44,NAME_TYPE_SUITE_Unaccompanied,1 if the client was unaccompanied
+45,NAME_INCOME_TYPE_Businessman,Clients income type : Businessman
+46,NAME_INCOME_TYPE_Commercial associate,Clients income type : Commercial associate
+47,NAME_INCOME_TYPE_Maternity leave,Clients income type : Maternity leave
+48,NAME_INCOME_TYPE_Pensioner,Clients income type : Pensioner
+49,NAME_INCOME_TYPE_State servant,Clients income type : State servant
+50,NAME_INCOME_TYPE_Student,Clients income type : Student
+51,NAME_INCOME_TYPE_Unemployed,Clients income type : Unemployed
+52,NAME_INCOME_TYPE_Working,Clients income type : Working
+53,NAME_EDUCATION_TYPE_Academic degree,Level of highest education the client achieved : Academic degree
+54,NAME_EDUCATION_TYPE_Higher education,Level of highest education the client achieved : Higher education
+55,NAME_EDUCATION_TYPE_Incomplete higher,Level of highest education the client achieved : Incomplete higher
+56,NAME_EDUCATION_TYPE_Lower secondary,Level of highest education the client achieved : Lower secondary
+57,NAME_EDUCATION_TYPE_Secondary / secondary special,Level of highest education the client achieved : Secondary / secondary special
+58,NAME_FAMILY_STATUS_Civil marriage,Family status of the client : Civil marriage
+59,NAME_FAMILY_STATUS_Married,Family status of the client : Married
+60,NAME_FAMILY_STATUS_Separated,Family status of the client : Separated
+61,NAME_FAMILY_STATUS_Single / not married,Family status of the client : Single / not married
+62,NAME_FAMILY_STATUS_Unknown,Family status of the client : Unknown
+63,NAME_FAMILY_STATUS_Widow,Family status of the client : Widow
+64,NAME_HOUSING_TYPE_Co-op apartment,What is the housing situation of the client : Co-op apartment
+65,NAME_HOUSING_TYPE_House / apartment,What is the housing situation of the client : House / apartment
+66,NAME_HOUSING_TYPE_Municipal apartment,What is the housing situation of the client : Municipal apartment
+67,NAME_HOUSING_TYPE_Office apartment,What is the housing situation of the client : Office apartment
+68,NAME_HOUSING_TYPE_Rented apartment,What is the housing situation of the client : Rented apartment
+69,NAME_HOUSING_TYPE_With parents,What is the housing situation of the client : With parents
+70,OCCUPATION_TYPE_Accountants,What kind of occupation does the client have : Accountants
+71,OCCUPATION_TYPE_Cleaning staff,What kind of occupation does the client have : Cleaning staff
+72,OCCUPATION_TYPE_Cooking staff,What kind of occupation does the client have : Cooking staff
+73,OCCUPATION_TYPE_Core staff,What kind of occupation does the client have : Core staff
+74,OCCUPATION_TYPE_Drivers,What kind of occupation does the client have : Drivers
+75,OCCUPATION_TYPE_HR staff,What kind of occupation does the client have : HR staff
+76,OCCUPATION_TYPE_High skill tech staff,What kind of occupation does the client have : High skill tech staff
+77,OCCUPATION_TYPE_IT staff,What kind of occupation does the client have : IT staff
+78,OCCUPATION_TYPE_Laborers,What kind of occupation does the client have : Laborers
+79,OCCUPATION_TYPE_Low-skill Laborers,What kind of occupation does the client have : Low-skill Laborers
+80,OCCUPATION_TYPE_Managers,What kind of occupation does the client have : Managers
+81,OCCUPATION_TYPE_Medicine staff,What kind of occupation does the client have : _Medicine staff
+82,OCCUPATION_TYPE_Private service staff,What kind of occupation does the client have : Private service staff
+83,OCCUPATION_TYPE_Realty agents,What kind of occupation does the client have : Realty agents
+84,OCCUPATION_TYPE_Sales staff,What kind of occupation does the client have : Sales staff
+85,OCCUPATION_TYPE_Secretaries,What kind of occupation does the client have : Secretaries
+86,OCCUPATION_TYPE_Security staff,What kind of occupation does the client have : Security staff
+87,OCCUPATION_TYPE_Waiters/barmen staff,What kind of occupation does the client have : Waiters/barmen staff
+88,EMERGENCYSTATE_MODE_Yes,Normalized information about building where the client lives : EMERGENCYSTATE_MODE
+89,DAYS_EMPLOYED_PERC,Number of days employed in the current job (date of the application) / age of the client in days
+90,INCOME_CREDIT_PERC,Percentage of the income that the credit represent
+91,INCOME_PER_PERSON,Income per person of the family members
+92,ANNUITY_INCOME_PERC,Annuity of the Credit Bureau credit / Income of the client
+93,PAYMENT_RATE,Annuity of the Credit Bureau credit / Amount of the loan
