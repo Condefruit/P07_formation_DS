@@ -128,9 +128,8 @@ explanation_client = explanation_client.head(nb_features_explain)
 # Changing the order because plotly plots from bottom to top
 explanation_client.sort_values('shap_value_abs', ascending=True, inplace=True)
 # Getting raw data and writing it on the labels
-explanation_client['raw_data'] = X_test.loc[customer_number][explanation_client.feature_name].iloc[0]
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
-                                       + explanation_client.raw_data.round(2).astype(str)
+                                       + explanation_client.shap_value.round(2).astype(str)
 
 
 # Main page
@@ -189,10 +188,11 @@ st.write("Description :", desc[desc['col name'] == select_element2]['Description
 
 col1, col2 = st.columns(2)
 
-col1.subheader("Description of the category")
-fig1 = px.scatter(X_test, x=select_element1)
-fig1.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
-col1.write(fig1, use_column_width=True)
+with col1 :
+    st.write('graph 1')
+    fig1 = px.scatter(X_test, x=select_element1)
+    fig1.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
+    col1.write(fig1, use_column_width=True)
 
 col2.subheader("Description of the category")
 fig2= px.scatter(X_test, x=select_element2)
@@ -200,6 +200,8 @@ fig2.add_vline(x = X_test[select_element2].loc[customer_number], line_width = 3,
 col2.write(fig2, use_column_width=True)
 
 fig3 = px.scatter(X_test, x = select_element1, y = select_element2)
+fig3.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 1, line_color = 'red')
+fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
 st.write(fig3)
 
 
