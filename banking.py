@@ -49,8 +49,6 @@ X_test = pd.read_csv(url_X_test, index_col=[0])
 y_test = pd.read_csv(url_y_test, index_col=[0])
 desc = pd.read_csv(url_def)
 
-st.dataframe(desc.head(3))
-
 # General
 # ----------------------------------------
 # ----------------------------------------
@@ -181,20 +179,26 @@ with col2:
 
 categories = list(X_test)
 
-st.subheader("Feature importance")
+st.subheader("Current client compared with other clients")
 
 select_element1 = st.selectbox('Pick a first category', categories)
+st.write(desc[desc['col name'] == select_element1]['Description'])
+
 select_element2 = st.selectbox('Pick a second category', categories)
+st.write(desc[desc['col name'] == select_element2]['Description'])
 
 col1, col2 = st.columns(2)
 
 col1.subheader("Description of the category")
 fig1 = px.scatter(X_test, x=select_element1)
+fig1.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
 col1.write(fig1, use_column_width=True)
 
 col2.subheader("Description of the category")
 fig2= px.scatter(X_test, x=select_element2)
+fig2.add_vline(x = X_test[select_element2].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
 col2.write(fig2, use_column_width=True)
 
+fig3 = px.scatter(X_test, x = select_element1, y = select_element2)
 
 
