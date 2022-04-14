@@ -120,7 +120,7 @@ explanation_client['shap_value_abs'] = explanation_client.shap_value.map(abs)
 # Tagging positive and negative values and setting a color for plotting
 explanation_client['color'] = explanation_client.shap_value > 0
 explanation_client.color.replace(True, 'deeppink', inplace=True)
-explanation_client.color.replace(False, 'dogerblue', inplace=True)
+explanation_client.color.replace(False, 'dodgerblue', inplace=True)
 # Sorting by abs value
 explanation_client.sort_values('shap_value_abs', ascending=False, inplace=True)
 # Getting only the number asked by user
@@ -205,4 +205,30 @@ fig3.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 1,
 fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
 st.write(fig3)
 
+import streamlit.components.v1 as components
+import xgboost
 
+@st.cache
+def load_data():
+    return shap.datasets.boston()
+
+def st_shap(plot, height=None):
+    shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
+    components.html(shap_html, height=height)
+
+st.title("SHAP in Streamlit")
+
+# train XGBoost model
+X,y = load_data()
+model = xgboost.train({"learning_rate": 0.01}, xgboost.DMatrix(X, label=y), 100)
+
+# explain the model's predictions using SHAP
+# (same syntax works for LightGBM, CatBoost, scikit-learn and spark models)
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X)
+
+# visualize the first prediction's explanation (use matplotlib=True to avoid Javascript)
+st_shap(shap.force_plot(explainer.expected_value, shap_values[0,:], X.iloc[0,:]))
+
+# visualize the training set predictions
+st_shap(shap.force_plot(explainer.expected_value, shap_values, X), 400)
