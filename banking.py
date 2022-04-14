@@ -182,10 +182,10 @@ categories = list(X_test)
 st.subheader("Current client compared with other clients")
 
 select_element1 = st.selectbox('Pick a first category', categories)
-st.write(desc[desc['col name'] == select_element1]['Description'])
+st.write(desc[desc['col name'] == select_element1]['Description'].iloc[0])
 
 select_element2 = st.selectbox('Pick a second category', categories)
-st.write(desc[desc['col name'] == select_element2]['Description'])
+st.write(desc[desc['col name'] == select_element2]['Description'].iloc[0])
 
 col1, col2 = st.columns(2)
 
@@ -199,6 +199,8 @@ fig2= px.scatter(X_test, x=select_element2)
 fig2.add_vline(x = X_test[select_element2].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
 col2.write(fig2, use_column_width=True)
 
+st.write('ou est tu ?')
 fig3 = px.scatter(X_test, x = select_element1, y = select_element2)
+st.write('Dans ton cul !')
 
 
