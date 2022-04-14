@@ -119,8 +119,8 @@ explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().val
 explanation_client['shap_value_abs'] = explanation_client.shap_value.map(abs)
 # Tagging positive and negative values and setting a color for plotting
 explanation_client['color'] = explanation_client.shap_value > 0
-explanation_client.color.replace(True, 'red', inplace=True)
-explanation_client.color.replace(False, 'green', inplace=True)
+explanation_client.color.replace(True, 'deeppink', inplace=True)
+explanation_client.color.replace(False, 'dogerblue', inplace=True)
 # Sorting by abs value
 explanation_client.sort_values('shap_value_abs', ascending=False, inplace=True)
 # Getting only the number asked by user
