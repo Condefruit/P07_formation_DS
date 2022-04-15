@@ -194,16 +194,17 @@ st.write("Description :", desc[desc['col name'] == select_element2]['Description
 col1, col2 = st.columns(2)
 
 with col1 :
-    st.subheader('graph 1')
+    st.subheader('feature 1')
     fig1 = px.scatter(X_test, x=select_element1)
     fig1.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
     col1.write(fig1, use_column_width=True)
 
-col2.subheader("Description of the category")
+col2.subheader("Feature 2")
 fig2= px.scatter(X_test, x=select_element2)
 fig2.add_vline(x = X_test[select_element2].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
 col2.write(fig2, use_column_width=True)
 
+st.subheader('Pair plot')
 fig3 = px.scatter(X_test, x = select_element1, y = select_element2)
 fig3.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 1, line_color = 'red')
 fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
