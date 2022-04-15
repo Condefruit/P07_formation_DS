@@ -194,7 +194,7 @@ st.write("Description :", desc[desc['col name'] == select_element2]['Description
 col1, col2 = st.columns(2)
 
 with col1 :
-    st.write('graph 1')
+    st.subheader('graph 1')
     fig1 = px.scatter(X_test, x=select_element1)
     fig1.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
     col1.write(fig1, use_column_width=True)
