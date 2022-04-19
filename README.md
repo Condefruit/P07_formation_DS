@@ -20,7 +20,7 @@ Points importants :
  Dashboard interactif avec informations personnelles du client
 
 
-Objectifs:
+<!-- Objectifs:
 Entrainer un modèle de scoring à partir de données clients ayant contracté des prêts bancaires. Les clients sont labellisés 0 (bon payeur) ou 1 (défaut de paiement)
 Implémenter le modèle dans une application web explicant le score
 Prétraitement:
@@ -28,7 +28,7 @@ Utilisation du script de AGUIAR sur KAGGLE : https://www.kaggle.com/jsaguiar/lig
 
 Voir le script
 
-Les données sont déséquilibrées (seulement 8% de positifs). j'ai donc essayé de faire un clustering des negatifs (k-means) afin d'en dégager des catégories. Sans succès. j'ai donc décidé d'utiliser un RandomUnderSampler par volonté de faire simple et de réduire la taille du dataset. Les resultats de detection des positifs sont sensiblement améliorés (calcul du f1_score sur la classe 1).
+Les données sont déséquilibrées (seulement 8% de positifs). j'ai donc essayé de faire un clustering des negatifs (k-means) afin d'en dégager des catégories. Sans succès. j'ai donc décidé d'utiliser un RandomUnderSampler par volonté de faire simple et de réduire la taille du dataset. Les resultats de detection des positifs sont sensiblement améliorés (calcul du f1_score sur la classe 1). -->
 
 Voir le script
 
