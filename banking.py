@@ -115,6 +115,11 @@ urlb = "https://p07oc.herokuapp.com//explain"
 data_client = X_test.loc[customer_number].to_dict()
 response_api_explain = requests.post(urlb, json=data_client)
 
+# Sending the API the scaled data and getting a dict of the shap values
+urlc = "https://p07oc.herokuapp.com//globals"
+datas = X_test
+response_api_globals = requests.post(urlc, json=datas)
+
 # We'll use a dataframe for convenience, sorting etc
 explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
                                        'feature_name': response_api_explain.json().keys()})
@@ -204,8 +209,18 @@ fig2= px.scatter(X_test, x=select_element2)
 fig2.add_vline(x = X_test[select_element2].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
 col2.write(fig2, use_column_width=True)
 
-st.subheader('Pair plot')
-fig3 = px.scatter(X_test, x = select_element1, y = select_element2)
-fig3.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 1, line_color = 'red')
-fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
-st.write(fig3)
+col3, col4 = st.columns(2)
+
+with col3 :
+    st.subheader('Pair plot')
+    fig3 = px.scatter(X_test, x = select_element1, y = select_element2)
+    fig3.add_vline(x = X_test[select_element1].loc[customer_number], line_width = 1, line_color = 'red')
+    fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
+    st.write(fig3)
+
+col4.subheader("globale explainations")
+fig2= px.scatter(X_test, x=select_element2)
+fig2.add_vline(x = X_test[select_element2].loc[customer_number], line_width = 3, line_dash='dot', line_color = 'red')
+col2.write(fig2, use_column_width=True)
+
+st.write(response_api_globals)

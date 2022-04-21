@@ -29,21 +29,22 @@ def prediction():
 @app.route('/explain', methods=["POST"])
 def explain():
     data_client = request.json
-    #print("1", data_client)
     data_client_values = np.array([list(data_client.values())])
-    #print("2", data_client_values)
     data_client_features = list(data_client.keys())
-    #print("3", data_client_features)
-    print("Ca bug à la prochaine ligne")
-    print(model)
-    explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
-    print("4", explainer_shap) 
+    explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"]) 
     shap_values_client = explainer_shap.shap_values(model[:-1].transform(data_client_values))
-    print("5", shap_values_client)
     shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
-    print("6", shap_values_client_serie)
 
     return jsonify(shap_values_client_serie.to_dict())
+
+# Instruction de routage
+@app.route('/globals', methods=["POST"])
+def globals():
+    datas = request.json
+    explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"]) 
+    shap_values = explainer.shap_values(datas)
+
+    return jsonify(shap_values)
 
 @app.route("/")
 def hello_world():

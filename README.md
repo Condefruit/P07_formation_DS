@@ -1,4 +1,4 @@
-Projet 07/08 : parcours Data Scientist (OpenClassrooms)
+## Projet 07 du parcours Data Scientist (OpenClassrooms)
 
 -------------------
 
