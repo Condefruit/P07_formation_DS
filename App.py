@@ -43,7 +43,8 @@ def globals():
     explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
     shap_values = explainer.shap_values(df)
     print("4", shap_values)
-    shap_test = np.array2string(shap_values)
+    shap_test = json.dumps(shap_values)
+    print("5", shap_values)
 
     return jsonify(shap_test)
 
