@@ -41,9 +41,13 @@ def explain():
 @app.route('/globals', methods=["POST"])
 def globals():
     datas = request.json
+    print("1", datas)
     df = pd.read_json(datas, orient="index")
+    print("2", df.head(1))
     explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
+    print("3", explainer)
     shap_values = explainer.shap_values(df)
+    print("4", shap_values)
 
     return jsonify(shap_values)
 
