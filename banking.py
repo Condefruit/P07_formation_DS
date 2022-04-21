@@ -220,5 +220,5 @@ with col3 :
 
 col4.subheader("globale explainations")
 
-testo = response_api_globals.json().values()
+testo = response_api_globals
 st.write(testo)
