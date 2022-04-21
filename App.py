@@ -19,9 +19,7 @@ model = pickle.load(pickle_in)
 @app.route('/predict', methods=["POST"])
 def prediction():
     data = request.get_json() # Parses the incoming JSON request data and returns it. / convertit l’objet JSON en données Python
-    #print(data)
     prediction_value = np.array2string(model.predict_proba(data)[0, 1]) # retourne la proba de la class 1
-    #print(prediction_value)
 
     return jsonify(prediction_value) # Serialize data to JSON
 
@@ -41,15 +39,13 @@ def explain():
 @app.route('/globals', methods=["POST"])
 def globals():
     datas = request.json
-    print("1", datas)
     df = pd.read_json(datas, orient="index")
-    print("2", df.head(1))
     explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
-    print("3", explainer)
     shap_values = explainer.shap_values(df)
     print("4", shap_values)
+    shap_test = np.array2string(shap_values)
 
-    return jsonify(shap_values)
+    return jsonify(shap_test)
 
 @app.route("/")
 def hello_world():
