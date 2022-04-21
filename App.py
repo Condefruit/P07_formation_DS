@@ -33,7 +33,7 @@ def explain():
     data_client_values = np.array([list(data_client.values())])
     data_client_features = list(data_client.keys())
     #explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
-    explainer_shap = shap.Explainer(model.named_steps["logisticregression "])
+    explainer_shap = shap.Explainer(model.named_steps["logisticregression"])
     shap_values_client = explainer_shap.shap_values(model[:-1].transform(data_client_values))
     shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
 
@@ -45,7 +45,7 @@ def globals():
     datas = request.json
     df = pd.read_json(datas, orient="index")
     # explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
-    explainer = shap.Explainer(model.named_steps["lgbmclassifier"])
+    explainer = shap.Explainer(model.named_steps["logisticregression"])
     shap_values = explainer.shap_values(df)
     print("5", shap_values)
     a = shap_values[1]
