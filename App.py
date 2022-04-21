@@ -44,6 +44,8 @@ def globals():
     explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
     shap_values = explainer.shap_values(df)
     print("5", shap_values)
+    test = shap_values.tolist()
+    print(test)
 
     return shap_values.tolist()
 
