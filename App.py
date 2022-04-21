@@ -30,9 +30,15 @@ def prediction():
 @app.route('/explain', methods=["POST"])
 def explain():
     data_client = request.json
+    ## Rajout
     print(data_client)
-    ## Rajout 
-    df_client = pd.read_json(data_client, orient="index")
+    print('OOOOOOOOKKKKK')
+    features_val = list(data_client.values())
+    print(features_dic)
+    features_names = list(data_client.keys())
+    df_client = pd.DataFrame([features_val], columns=features_names)
+    print(df_client)
+    ## Fint Rajout
     data_client_values = np.array([list(data_client.values())])
     data_client_features = list(data_client.keys())
     #explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
