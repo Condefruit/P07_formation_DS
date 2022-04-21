@@ -117,7 +117,7 @@ response_api_explain = requests.post(urlb, json=data_client)
 
 # Sending the API the scaled data and getting a dict of the shap values
 urlc = "https://p07oc.herokuapp.com//globals"
-datas = X_test.to_json(orient="index")
+datas = X_test.head(1).to_json(orient="index")
 response_api_globals = requests.post(urlc, json=datas)
 
 # We'll use a dataframe for convenience, sorting etc
