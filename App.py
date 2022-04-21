@@ -30,10 +30,12 @@ def prediction():
 @app.route('/explain', methods=["POST"])
 def explain():
     data_client = request.json
+    ## Rajout 
+    df_client = pd.read_json(data_client, orient="index")
     data_client_values = np.array([list(data_client.values())])
     data_client_features = list(data_client.keys())
     #explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
-    explainer_shap = shap.LinearExplainer(model.named_steps["logisticregression"], data_client_features)
+    explainer_shap = shap.LinearExplainer(model.named_steps["logisticregression"], df_client)
     shap_values_client = explainer_shap.shap_values(model[:-1].transform(data_client_values))
     shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
 
