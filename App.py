@@ -4,6 +4,7 @@ import shap
 import pickle
 from lightgbm import LGBMClassifier
 from flask import Flask, request, jsonify
+from sklearn.linear_model import LogisticRegression
 import json
 
 # Crée l’objet application Flask, qui contient les données de l’application et les méthodes.

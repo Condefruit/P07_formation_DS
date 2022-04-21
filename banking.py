@@ -220,5 +220,18 @@ with col3 :
 
 col4.subheader("globale explainations")
 
-testo = response_api_globals
-st.write(testo)
+# testo = response_api_globals
+# st.write(testo)
+
+
+import shap
+import pickle
+
+pickle_in = open('model.pickle', 'rb')
+model = pickle.load(pickle_in)
+
+explainer = shap.Explainer(model.named_steps["lgbmclassifier"])
+shap_values = explainer.shap_values(X_test)
+a = shap_values[1]
+fig9 = shap.summary_plot(a, X_test)
+st.write(fig9)
