@@ -103,12 +103,12 @@ st.sidebar.markdown("""---""")
 # ----------------------------------------
 
 # Communicating with the Heroku API
-# urla = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
-# headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-# client_datas = [X_test.loc[customer_number].values.tolist()]
-# j_data = json.dumps(client_datas) # json produit toujours des objets str
-# response_api_preditct = requests.post(urla, data=j_data, headers=headers) # post --> send datas to the server
-# risk = float(response_api_preditct.text.split('"')[1])
+urla = "https://p07oc.herokuapp.com/predict" # adress of the Heroku API
+headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+client_datas = [X_test.loc[customer_number].values.tolist()]
+j_data = json.dumps(client_datas) # json produit toujours des objets str
+response_api_preditct = requests.post(urla, data=j_data, headers=headers) # post --> send datas to the server
+risk = float(response_api_preditct.text.split('"')[1])
 
 # Sending the API the scaled data and getting a dict of the shap values
 urlb = "https://p07oc.herokuapp.com//explain"
