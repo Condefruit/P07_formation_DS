@@ -220,5 +220,5 @@ with col3 :
 
 col4.subheader("globale explainations")
 
-
-st.write(response_api_globals)
+testo = response_api_globals
+st.write(testo)
