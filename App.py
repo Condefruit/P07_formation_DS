@@ -30,6 +30,7 @@ def prediction():
 @app.route('/explain', methods=["POST"])
 def explain():
     data_client = request.json
+    print(data_client)
     ## Rajout 
     df_client = pd.read_json(data_client, orient="index")
     data_client_values = np.array([list(data_client.values())])
