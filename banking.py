@@ -115,7 +115,7 @@ urlb = "https://p07oc.herokuapp.com//explain"
 data_client = X_test.loc[customer_number].to_dict()
 response_api_explain = requests.post(urlb, json=data_client)
 
-# Sending the API the scaled data and getting a dict of the shap values
+# Sending the API the dataframe
 urlc = "https://p07oc.herokuapp.com//globals"
 datas = X_test.head(1).to_json(orient="index")
 response_api_globals = requests.post(urlc, json=datas)
@@ -220,5 +220,5 @@ with col3 :
 
 col4.subheader("globale explainations")
 
-testo = response_api_globals
+testo = response_api_globals.json().values()
 st.write(testo)
