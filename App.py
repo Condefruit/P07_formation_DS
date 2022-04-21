@@ -34,7 +34,7 @@ def explain():
     print(data_client)
     print('OOOOOOOOKKKKK')
     features_val = list(data_client.values())
-    print(features_dic)
+    print(features_val)
     features_names = list(data_client.keys())
     df_client = pd.DataFrame([features_val], columns=features_names)
     print(df_client)
