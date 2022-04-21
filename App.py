@@ -4,6 +4,7 @@ import shap
 import pickle
 from lightgbm import LGBMClassifier
 from flask import Flask, request, jsonify
+import json
 
 # Crée l’objet application Flask, qui contient les données de l’application et les méthodes.
 app = Flask(__name__)
