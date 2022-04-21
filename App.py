@@ -43,11 +43,9 @@ def globals():
     df = pd.read_json(datas, orient="index")
     explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
     shap_values = explainer.shap_values(df)
-    print("4", shap_values)
-    shap_test = json.dumps(shap_values)
     print("5", shap_values)
 
-    return jsonify(shap_test)
+    return shap_values.tolist()
 
 @app.route("/")
 def hello_world():
