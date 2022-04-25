@@ -153,9 +153,9 @@ st.write('This application predict if the selected client will statistically ref
 st.write('the risk of fail refunding is :', risk)
 final_result = threshold - risk
 if final_result >= 0 :
-    text = "#### According to the thresold, the loan offer is Acceptep"
+    text = "According to the thresold, the loan offer is Acceptep"
 else :
-    text = "#### According to the thresold, the loan offer is Refused"
+    text = "According to the thresold, the loan offer is Refused"
 
 #couleur du background de l'annonce
 if -1<=final_result<-0.5 :
