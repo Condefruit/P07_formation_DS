@@ -224,6 +224,28 @@ col4.subheader("globale explainations")
 # st.write(testo)
 
 
+st.write('----------------')
+
+col1, col2 ,col3= st.beta_columns(3)
+with col1:
+     color1 = st.color_picker('选择渐变起始颜色', '#1aa3ff',key=1)
+     st.write(f"你选择了{color1}")
+with col2:
+     color2 = st.color_picker('选择渐变结尾颜色', '#00ff00',key=2)
+     st.write(f"你选择了{color2}")
+with col3:
+     color3 = st.color_picker('选择文字颜色', '#ffffff',key=3)
+     st.write(f"你选择了{color3}")
+text=st.text_input("请输入你要添加的文字")
+
+def example(color1, color2, color3, content):
+     st.markdown(f'<p style="text-align:center;background-image: linear-gradient(to right,{color1}, {color2});color:{color3};font-size:24px;border-radius:2%;">{content}</p>', unsafe_allow_html=True)
+example(color1,color2,color3,text)
+
+st.write('----------------')
+
+
+
 import shap
 import pickle
 
