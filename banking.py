@@ -172,7 +172,7 @@ elif 0.25<=final_result<1.1 :
 text_color = '#000000'
 
 def example(color, text_color, content):
-     st.markdown(f'<p style="text-align:center;background-image: linear-gradient(to right,{color}, {color)});color:{text_color};font-size:24px;border-radius:2%;">{content}</p>', unsafe_allow_html=True)
+     st.markdown(f'<p style="text-align:center;background-image: linear-gradient(to right,{color}, {color});color:{text_color};font-size:24px;border-radius:2%;">{content}</p>', unsafe_allow_html=True)
 example(color, text_color, text)
 
 
