@@ -158,16 +158,22 @@ else :
     text = "#### According to the thresold, the loan offer is Refused"
 
 #couleur du background de l'annonce
-rouge = 128 + (-1 * 127 * final_result)
-vert = 128 + (1 * 127 * final_result)
+if -1<=final_result<-0.5 :
+    color = '#df1717'
+elif -0.5<=final_result<-0.25 :
+    color = '#df5617'
+elif -0.25<=final_result<0 :
+    color = '#dfa517'
+elif 0<=final_result<0.25 :
+    color = '#afdf17'
+elif 0.25<=final_result<1.1 :
+    color = '#3ddf17'
 
+text_color = '#000000'
 
-color3 = st.color_picker('text color', '#ffffff',key=3)
-st.write(f"you pick{color3}")
-
-def example(color3, content):
-     st.markdown(f'<p style="text-align:center;background-image: linear-gradient(to right,{rgba(rouge,vert,20,0.9)}, {rgba(rouge,vert,20,0.9)});color:{color3};font-size:24px;border-radius:2%;">{content}</p>', unsafe_allow_html=True)
-example(color3,text)
+def example(color, text_color, content):
+     st.markdown(f'<p style="text-align:center;background-image: linear-gradient(to right,{color}, {color)});color:{text_color};font-size:24px;border-radius:2%;">{content}</p>', unsafe_allow_html=True)
+example(color, text_color, text)
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
