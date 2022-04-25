@@ -160,8 +160,6 @@ else :
 #couleur du background de l'annonce
 rouge = 128 + (-1 * 127 * final_result)
 vert = 128 + (1 * 127 * final_result)
-color = rgba(rouge,vert,20,0.9)
-
 
 
 color3 = st.color_picker('text color', '#ffffff',key=3)
@@ -169,7 +167,7 @@ st.write(f"you pick{color3}")
 
 def example(color1, color2, color3, content):
      st.markdown(f'<p style="text-align:center;background-image: linear-gradient(to right,{color1}, {color2});color:{color3};font-size:24px;border-radius:2%;">{content}</p>', unsafe_allow_html=True)
-example(color,color,color3,text)
+example(rgba(rouge,vert,20,0.9),rgba(rouge,vert,20,0.9),color3,text)
 
 
 # st.markdown(f"<center style='font-family:Verdana ; color:{color_decision}; font-size: 60px;'>{litteral_decision.upper()}</center>",   unsafe_allow_html=True)
