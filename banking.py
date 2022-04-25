@@ -256,7 +256,7 @@ import pickle
 pickle_in = open('model.pickle', 'rb')
 model = pickle.load(pickle_in)
 
-explainer = shap.Explainer(model.named_steps["lgbmclassifier"])
+explainer = shap.Explainer(model.named_steps["logisticregression"])
 shap_values = explainer.shap_values(X_test)
 a = shap_values[1]
 fig9 = shap.summary_plot(a, X_test)
