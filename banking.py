@@ -251,6 +251,8 @@ import pickle
 pickle_in = open('best_model.pickle', 'rb')
 model = pickle.load(pickle_in)
 
+st.write(model.named_steps["lgbmclassifier"])
+
 explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
 shap_values = explainer.shap_values(X_test)
 fig9 = shap.summary_plot(shap_values, X_test)
