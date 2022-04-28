@@ -15,7 +15,7 @@ app.config["DEBUG"] = True
 
 # Load the Pickle file in the memory
 # pickle_in = open('best_model.pickle', 'rb') # lgbm
-pickle_in = open('model.pickle', 'rb')
+pickle_in = open('best_model.pickle', 'rb')
 model = pickle.load(pickle_in)
 
 # Instruction de routage '/predict' = chemin predict ++> "POST" pour recevoir des données utilisateur
@@ -30,21 +30,11 @@ def prediction():
 @app.route('/explain', methods=["POST"])
 def explain():
     data_client = request.json
-    ## Rajout
-    features_val = list(data_client.values())
-    print(features_val)
-    features_names = list(data_client.keys())
-    df_client = pd.DataFrame([features_val], columns=features_names)
-    print(df_client)
-    print('OOOOOOOOKKKKK')
-    ## Fint Rajout
     data_client_values = np.array([list(data_client.values())])
     data_client_features = list(data_client.keys())
-    #explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
-    explainer_shap = shap.LinearExplainer(model.named_steps["logisticregression"], df_client)
+    explainer_shap = shap.TreeExplainer(model.named_steps["lgbmclassifier"])
     shap_values_client = explainer_shap.shap_values(model[:-1].transform(data_client_values))
-    shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[0, :])
-    #shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
+    shap_values_client_serie = pd.Series(index=data_client_features, data=shap_values_client[1][0, :])
 
     return jsonify(shap_values_client_serie.to_dict())
 
