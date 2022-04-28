@@ -13,7 +13,7 @@ st.set_page_config(layout="wide")
 # ----------------------------------------
 # ----------------------------------------
 # Ama = 1, load from SS / Ama = 0, load from git
-Ama = 1
+Ama = 0
 # ----------------------------------------
 
 #Loading data from amazon / desactivated to avoid useless data consu
