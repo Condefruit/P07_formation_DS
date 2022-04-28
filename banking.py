@@ -12,44 +12,50 @@ st.set_page_config(layout="wide")
 
 # ----------------------------------------
 # ----------------------------------------
+# Ama = 1, load from SS / Ama = 0, load from git
+Ama = 0
+# ----------------------------------------
 
-# #Loading data from amazon / desactivated to avoid useless data consu
+#Loading data from amazon / desactivated to avoid useless data consu
+if Ama == 1:
+    # Create connection object.
+    # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+    fs = s3fs.S3FileSystem(anon=False)
 
-# # Create connection object.
-# # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
-# fs = s3fs.S3FileSystem(anon=False)
+    # Retrieve file contents.
+    # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+    @st.experimental_memo(ttl=600)
 
-# # Retrieve file contents.
-# # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-# @st.experimental_memo(ttl=600)
-
-# def read_file(filename):
-#     with fs.open(filename) as f:
-#         return pd.read_csv(f)
+    def read_file(filename):
+        with fs.open(filename) as f:
+            return pd.read_csv(f)
 
 
-# X_train = read_file("p07oc/X_train.csv")
-# y_train = read_file("p07oc/y_train.csv")
-# X_test = read_file("p07oc/X_test.csv")
-# y_test = read_file("p07oc/y_test.csv")
+    X_train = read_file("p07oc/X_train.csv")
+    y_train = read_file("p07oc/y_train.csv")
+    X_test = read_file("p07oc/X_test.csv")
+    y_test = read_file("p07oc/y_test.csv")
+    desc = read_file("p07oc/description.csv")
 
-# X_train = X_train.set_index('Unnamed: 0')
-# X_test = X_test.set_index('SK_ID_CURR')
+
+    X_train = X_train.set_index('Unnamed: 0')
+    X_test = X_test.set_index('SK_ID_CURR')
+
 
 # ----------------------------------------
 # ----------------------------------------
 
 #Loading data from a local source
+if Ama == 0:
+    url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test_na.csv"
+    # url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test_na.csv"
+    url_train = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_train_light.csv"
+    url_def = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/description.csv"
 
-url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test_na.csv"
-url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test_na.csv"
-url_train = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_train_light.csv"
-url_def = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/description.csv"
-
-X_train = pd.read_csv(url_train, index_col=[0])
-X_test = pd.read_csv(url_X_test, index_col=[0])
-y_test = pd.read_csv(url_y_test, index_col=[0])
-desc = pd.read_csv(url_def)
+    X_train = pd.read_csv(url_train, index_col=[0])
+    X_test = pd.read_csv(url_X_test, index_col=[0])
+    # y_test = pd.read_csv(url_y_test, index_col=[0])
+    desc = pd.read_csv(url_def)
 
 # General
 # ----------------------------------------
@@ -238,30 +244,13 @@ with col3 :
     fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
     st.write(fig3)
 
+from IPython.display import Image
+glob = Image("shap_glob.png")
+
 col4.subheader("globale explainations")
+col4.st.image(glob)
 
 # testo = response_api_globals
 # st.write(testo)
 
 # st.write('----------------')
-
-import shap
-import pickle
-
-pickle_in = open('best_model.pickle', 'rb')
-model = pickle.load(pickle_in)
-
-explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
-shap_values = explainer.shap_values(X_test)
-fig9 = shap.summary_plot(shap_values, X_test)
-st.write(fig9)
-
-
-# def st_shap(plot, height=None):
-#     shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
-#     components.html(shap_html, height=height)
-
-# st.title("SHAP in Streamlit")
-# explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
-# shap_values = explainer.shap_values(X_test)
-# st_shap(shap.summary_plot(shap_values, X_test), 400)
