@@ -13,7 +13,7 @@ st.set_page_config(layout="wide")
 # ----------------------------------------
 # ----------------------------------------
 # Ama = 1, load from SS / Ama = 0, load from git
-Ama = 0
+Ama = 1
 # ----------------------------------------
 
 #Loading data from amazon / desactivated to avoid useless data consu
@@ -192,7 +192,7 @@ with col1:
     st.write('')
     st.write('Scroll to check ones of the', X_test.shape[1], 'client features')
     st.write('')
-    st.dataframe(X_test.loc[customer_number])
+    st.dataframe(X_test.loc[customer_number].sort_index())
 
 with col2:
     st.subheader('Features importance')
