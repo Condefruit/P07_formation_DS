@@ -4,7 +4,6 @@ import shap
 import pickle
 from lightgbm import LGBMClassifier
 from flask import Flask, request, jsonify
-from sklearn.linear_model import LogisticRegression
 import json
 
 # Crée l’objet application Flask, qui contient les données de l’application et les méthodes.
@@ -12,6 +11,7 @@ app = Flask(__name__)
 # Modyfying part of the original config / check print(app.config)
 app.config["DEBUG"] = True
 #app.config['JSON_SORT_KEYS'] = False
+# test
 
 # Load the Pickle file in the memory
 # pickle_in = open('best_model.pickle', 'rb') # lgbm
