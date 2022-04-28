@@ -245,11 +245,11 @@ col4.subheader("globale explainations")
 
 # st.write('----------------')
 
-# import shap
-# import pickle
+import shap
+import pickle
 
-# pickle_in = open('best_model.pickle', 'rb')
-# model = pickle.load(pickle_in)
+pickle_in = open('best_model.pickle', 'rb')
+model = pickle.load(pickle_in)
 
 # st.write(model.named_steps["lgbmclassifier"])
 
@@ -258,7 +258,6 @@ col4.subheader("globale explainations")
 # fig9 = shap.summary_plot(shap_values, X_test)
 # st.write(fig9)
 
-import shap
 
 def st_shap(plot, height=None):
     shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
