@@ -248,7 +248,7 @@ from PIL import Image
 image = Image.open('shap_glob.png')
 
 col4.subheader("globale explainations")
-col4.st.image(image, caption='Global feature impacts')
+col4.image(image, caption='Global feature impacts')
 
 # testo = response_api_globals
 # st.write(testo)
