@@ -152,7 +152,6 @@ explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
 # ----------------------------------------
 # ----------------------------------------                    
                    
-st.dataframe(explanation_client.head(3))
 
 st.title('Welcome to the credit answer dashboard !')
 st.write('This application predict if the selected client will statistically refund or not his loan')
