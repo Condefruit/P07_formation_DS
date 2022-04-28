@@ -31,14 +31,14 @@ if Ama == 1:
             return pd.read_csv(f)
 
 
-    X_train = read_file("p07oc/X_train.csv")
-    y_train = read_file("p07oc/y_train.csv")
-    X_test = read_file("p07oc/X_test.csv")
-    y_test = read_file("p07oc/y_test.csv")
+    # X_train = read_file("p07oc/X_train.csv")
+    # y_train = read_file("p07oc/y_train.csv")
+    X_test = read_file("p07oc/X_test_na.csv")
+    # y_test = read_file("p07oc/y_test.csv")
     desc = read_file("p07oc/description.csv")
 
 
-    X_train = X_train.set_index('Unnamed: 0')
+    # X_train = X_train.set_index('Unnamed: 0')
     X_test = X_test.set_index('SK_ID_CURR')
 
 
@@ -49,10 +49,10 @@ if Ama == 1:
 if Ama == 0:
     url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test_na.csv"
     # url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test_na.csv"
-    url_train = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_train_light.csv"
+    # url_train = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_train_light.csv"
     url_def = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/description.csv"
 
-    X_train = pd.read_csv(url_train, index_col=[0])
+    # X_train = pd.read_csv(url_train, index_col=[0])
     X_test = pd.read_csv(url_X_test, index_col=[0])
     # y_test = pd.read_csv(url_y_test, index_col=[0])
     desc = pd.read_csv(url_def)
