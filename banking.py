@@ -43,8 +43,10 @@ st.set_page_config(layout="wide")
 
 url_X_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_test_na.csv"
 url_y_test = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/y_test_na.csv"
+url_train = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/X_train_light.csv"
 url_def = "https://raw.githubusercontent.com/Condefruit/P07_formation_DS/main/description.csv"
 
+X_train = pd.read_csv(url_train, index_col=[0])
 X_test = pd.read_csv(url_X_test, index_col=[0])
 y_test = pd.read_csv(url_y_test, index_col=[0])
 desc = pd.read_csv(url_def)
@@ -141,8 +143,6 @@ explanation_client['raw_data'] = X_test[explanation_client.feature_name].iloc[0]
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
                                        + explanation_client.raw_data.round(2).astype(str)
 
-
-# Main page
 # ----------------------------------------
 # ----------------------------------------                                       
 
@@ -243,21 +243,15 @@ col4.subheader("globale explainations")
 # testo = response_api_globals
 # st.write(testo)
 
-
-
-
 st.write('----------------')
-
-
 
 import shap
 import pickle
 
-pickle_in = open('model.pickle', 'rb')
+pickle_in = open('best_model.pickle', 'rb')
 model = pickle.load(pickle_in)
 
-explainer = shap.Explainer(model.named_steps["logisticregression"])
+explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
 shap_values = explainer.shap_values(X_test)
-a = shap_values[1]
-fig9 = shap.summary_plot(a, X_test)
+fig9 = shap.summary_plot(shap_values, X_test)
 st.write(fig9)
