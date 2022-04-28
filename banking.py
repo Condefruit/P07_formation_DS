@@ -251,21 +251,17 @@ import pickle
 pickle_in = open('best_model.pickle', 'rb')
 model = pickle.load(pickle_in)
 
-# st.write(model.named_steps["lgbmclassifier"])
-
-# explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
-# shap_values = explainer.shap_values(X_test)
-# fig9 = shap.summary_plot(shap_values, X_test)
-# st.write(fig9)
-
-
-def st_shap(plot, height=None):
-    shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
-    components.html(shap_html, height=height)
-
-st.write(model.named_steps["lgbmclassifier"])
-
-st.title("SHAP in Streamlit")
 explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
 shap_values = explainer.shap_values(X_test)
-st_shap(shap.summary_plot(shap_values, X_test), 400)
+fig9 = shap.summary_plot(shap_values, X_test)
+st.write(fig9)
+
+
+# def st_shap(plot, height=None):
+#     shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
+#     components.html(shap_html, height=height)
+
+# st.title("SHAP in Streamlit")
+# explainer = shap.TreeExplainer(model.named_steps["lgbmclassifier"], X_train)
+# shap_values = explainer.shap_values(X_test)
+# st_shap(shap.summary_plot(shap_values, X_test), 400)
