@@ -123,10 +123,10 @@ urlb = "https://p07oc.herokuapp.com//explain"
 data_client = X_test.loc[customer_number].to_dict()
 response_api_explain = requests.post(urlb, json=data_client)
 
-# Sending the API the dataframe
-urlc = "https://p07oc.herokuapp.com//globals"
-datas = X_test.head(1).to_json(orient="index")
-response_api_globals = requests.post(urlc, json=datas)
+# # Sending the API the dataframe
+# urlc = "https://p07oc.herokuapp.com//globals"
+# datas = X_test.head(1).to_json(orient="index")
+# response_api_globals = requests.post(urlc, json=datas)
 
 # We'll use a dataframe for convenience, sorting etc
 explanation_client = pd.DataFrame({'shap_value': response_api_explain.json().values(),
@@ -145,7 +145,7 @@ explanation_client = explanation_client.head(nb_features_explain)
 # Changing the order because plotly plots from bottom to top
 explanation_client.sort_values('shap_value_abs', ascending=True, inplace=True)
 # Getting raw data and writing it on the labels
-explanation_client['raw_data'] = X_test[explanation_client.feature_name].iloc[0].values
+explanation_client['raw_data'] = X_test[explanation_client.feature_name].iloc[1].values
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
                                        + explanation_client.raw_data.round(2).astype(str)
 
