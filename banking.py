@@ -244,11 +244,11 @@ with col3 :
     fig3.add_hline(y = X_test[select_element2].loc[customer_number], line_width = 1, line_color = 'red')
     st.write(fig3)
 
-from IPython.display import Image
-glob = Image("shap_glob.png")
+from PIL import Image
+image = Image.open('shap_glob.png')
 
 col4.subheader("globale explainations")
-col4.st.image(glob)
+col4.st.image(image, caption='Global feature impacts')
 
 # testo = response_api_globals
 # st.write(testo)
