@@ -145,14 +145,14 @@ explanation_client = explanation_client.head(nb_features_explain)
 # Changing the order because plotly plots from bottom to top
 explanation_client.sort_values('shap_value_abs', ascending=True, inplace=True)
 # Getting raw data and writing it on the labels
-# explanation_client['raw_data'] = X_test[explanation_client.feature_name].iloc[0].values
-explanation_client['raw_data'] = X_test.loc[customer_number].values.tolist()
+explanation_client['raw_data'] = X_test[explanation_client.feature_name].iloc[0].values
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
                                        + explanation_client.raw_data.round(2).astype(str)
 
 # ----------------------------------------
-# ----------------------------------------                                       
-
+# ----------------------------------------                    
+                   
+st.dataframe(explanation_client.head(3))
 
 st.title('Welcome to the credit answer dashboard !')
 st.write('This application predict if the selected client will statistically refund or not his loan')
