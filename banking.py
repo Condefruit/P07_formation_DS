@@ -146,7 +146,7 @@ explanation_client = explanation_client.head(nb_features_explain)
 explanation_client.sort_values('shap_value_abs', ascending=True, inplace=True)
 # Getting raw data and writing it on the labels
 # explanation_client['raw_data'] = X_test[explanation_client.feature_name].iloc[0].values
-explanation_client['raw_data'] = X_test.loc[customer_number].values
+explanation_client['raw_data'] = X_test.loc[customer_number].values.tolist()
 explanation_client['bar_labels'] = explanation_client.feature_name + '\n=' \
                                        + explanation_client.raw_data.round(2).astype(str)
 
