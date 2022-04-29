@@ -62,7 +62,7 @@ if Ama == 0:
 # ----------------------------------------
 
 cus = X_test.shape[0]
-customers = X_test.index
+customers = X_test.sort_index().index
 
 
 # Sidebar
