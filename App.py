@@ -15,7 +15,7 @@ app.config["DEBUG"] = True
 
 # Load the Pickle file in the memory
 # pickle_in = open('best_model.pickle', 'rb') # lgbm
-pickle_in = open('best_model.pickle', 'rb')
+pickle_in = open('lgb_best.pickle', 'rb')
 model = pickle.load(pickle_in)
 
 # Instruction de routage '/predict' = chemin predict ++> "POST" pour recevoir des données utilisateur
@@ -56,7 +56,7 @@ def explain():
 @app.route("/")
 def hello_world():
     return "<p>Hello, World 21 Avril !</p>"
-    
+
     
 if __name__ == '__main__':
     app.run()
