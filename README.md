@@ -8,9 +8,9 @@ Data Scientist au sein de la société "Prêt à dépenser”, qui propose des c
 
 :one: Mettre en œuvre un outil de « scoring crédit » <br>
 :two: Classifier la demande en crédit accordé ou refusé <br>
-:three: Implémenter un tableau de bord intéractif pour les chargés de clientelle (avec données clients et transparence de la décision) <br>.
+:three: Implémenter un tableau de bord interactif pour les chargés de clientèle (avec données clients et transparence de la décision) <br>.
 à partir de données clients ayant contracté des prêts bancaires et classifié en "bon client" (0) ou "mauvais client" (1 : retard ou défaut de paiement). <br>
-Les données sont accessibles dans différentes base de données comprenants des : <br>
+Les données sont accessibles dans différentes bases de données comprenant des : <br>
 données comportementales <br>
 données provenant d'autres institutions financières, <br>
 etc <br>
@@ -19,26 +19,33 @@ etc <br>
 
 #### Prétraitement:
 
-Version simple utilisant uniquement la base de donnée principale (inspiré du script de [Will Koehrsen](https://www.kaggle.com/code/willkoehrsen/start-here-a-gentle-introduction/notebook)) sur KAGGLE ) <br>
-Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_Data_Analysis_main_database_only.ipynb)
+Version simple utilisant uniquement la base de données principale (inspiré du script de [Will Koehrsen](https://www.kaggle.com/code/willkoehrsen/start-here-a-gentle-introduction/notebook)) sur KAGGLE ) <br>
+Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_Data_Analysis_main_database_only.ipynb) : <br>
 Version plus avancée utilisant toutes les bases de données (inspiré du script d'[AGUIAR](https://www.kaggle.com/jsaguiar/lightgbm-with-simple-features) sur KAGGLE. <br>
-Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_Data_Analysis_full_database.ipynb) <br>
+Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_Data_Analysis_full_database.ipynb) : <br>
+
+---------------------------
 
 #### Modélisation
 
 La base de donnée est très déséquilibrée en terme de cible, 91.2 % de bon clients, il faut donc prendre en compte se déséquilibrage en terme de choix de modèle et de score d'évaluation. <br>
-Voir le script
+Avec un score d'accuracy ((TP+TN)/(𝑇𝑃+𝑇𝑁+𝐹𝑃+𝐹𝑁)) et un modèle qui prédit 100 % de bons clients, on obtient un score d'accuracy sur notre base de données de 91.2 %. Dans le détail on retrouve 100 % d'accuracy pour la classe majoritaire et 0 % pour la classe minoritaire. Dans la prédiction ou l’analyse de risques de crédit, c’est justement les défauts de paiement (classe minoritaire) qui sont les plus importants à déceler car ce qui entraine des pertes.
+
+Je compare donc différents scores (roc_auc / fbeta / score personnalisé {pour coller au mieux aux cahier des charges}) et différents modèles (dont des modèles qui gèrent le déséquilibre {dit "cost sensitive"} et des algorithmes de type "SMOTE" pour rééquilibrer la base de données) afin de donner le plus d'importance à la classe minoritaire. <br>
+
+Voir le script [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_comparaison_scores_modèles.ipynb) : <br>
+
+Pour expliciter le modèle et permettre aux chargés de clientèles de faire un retour clair au client, j'utilise la librairie SHAP (Shapley Additive exPlanations). [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_shap.ipynb) :
 
 ---------------------------
 
+#### Dashboard
 
-<!-- Creation d'un score de perte en montant avec des valeurs arbitraires de pertes en fonction de l'erreur.
-Voir fonction 'Loss Score'
+Le tableau de bord interactif est hébergé sur Streamlit, les données sont stockées sur S3 (AWS) et la prédiction se fait sur Heroku. <br>
+Le tableau de bord permet au chargé clientèle de sélectionner un client, d'avoir accès à la décision le concernant en fonction de la stratégie adoptée (seuil de classification) et à ses données.
+Liens ver le [dashboard](https://share.streamlit.io/condefruit/p07_formation_ds/main/banking.py) : <br>
 
-Determination des seuils en se basant sur les valeurs de pertes. Rappel: n'étant pas banquier, je ne peux garantir que les seuils soient cohérents avec une vision métier, la fonction de perte ainsi que les seuils doivent être réalisés avec un expert bancaire
-Voir le script
+---------------------------
 
-Dashboard
-Le dashboard est réalisé avec le script dash_board.py qui fonctionne avec le framework streamlit. Streamlit lit le fichier via github. Ensuite, les données sont chargées en cache via AWS s3. Les prédictions et les explications du modèle sont générées via des requêtes POST vers une API hébergée sur heroku qui accède aux scripts et au modèle via github également.
-
-Le dashboard présente donc le score prédit par le modèle et les variables les plus explicatives. Par ailleurs, on dispose aussi d'un histogramme permettant de visualiser la repartition d'une variable et la postition du client ciblé par rapport aux autres -->
+Lien vers le [support de présentation](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_support_presentation.pdf) : <br>
+et la [note explicative](https://github.com/Condefruit/P07_formation_DS/blob/main/note méthodologique.pdf) à destination des chargés de clientèle.
