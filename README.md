@@ -16,8 +16,8 @@ etc
 L’intention de ce projet est de réaliser un projet de bout en bout jusqu’à sa mise en production.
 
 Points importants :
- Transparence de la décision de crédit
- Dashboard interactif avec informations personnelles du client
+\bigodot Transparence de la décision de crédit
+\bigodot \dot 	\to Dashboard interactif avec informations personnelles du client
 
 
 <!-- Objectifs:
