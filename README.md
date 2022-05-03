@@ -6,38 +6,33 @@
 
 Data Scientist au sein de la société "Prêt à dépenser”, qui propose des crédits à la consommation pour des personnes ayant peu ou pas du tout d'historique de prêt, les objectifs sont de :
 
-:one: Mettre en œuvre un outil de « scoring crédit »
-:two: Classifier la demande en crédit accordé ou refusé
-à partir de :
-données comportementales
-données provenant d'autres institutions financières,
-etc
+:one: Mettre en œuvre un outil de « scoring crédit » <br>
+:two: Classifier la demande en crédit accordé ou refusé <br>
+:three: Implémenter un tableau de bord intéractif pour les chargés de clientelle (avec données clients et transparence de la décision) <br>.
+à partir de données clients ayant contracté des prêts bancaires et classifié en "bon client" (0) ou "mauvais client" (1 : retard ou défaut de paiement). <br>
+Les données sont accessibles dans différentes base de données comprenants des : <br>
+données comportementales <br>
+données provenant d'autres institutions financières, <br>
+etc <br>
 
-L’intention de ce projet est de réaliser un projet de bout en bout jusqu’à sa mise en production.
+--------------------------
 
-Points importants :
-\bigodot Transparence de la décision de crédit
-\bigodot \dot 	\to Dashboard interactif avec informations personnelles du client
+#### Prétraitement:
 
+Version simple utilisant uniquement la base de donnée principale (inspiré du script de [Will Koehrsen](https://www.kaggle.com/code/willkoehrsen/start-here-a-gentle-introduction/notebook)) sur KAGGLE ) <br>
+Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_Data_Analysis_main_database_only.ipynb)
+Version plus avancée utilisant toutes les bases de données (inspiré du script d'[AGUIAR](https://www.kaggle.com/jsaguiar/lightgbm-with-simple-features) sur KAGGLE. <br>
+Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_Data_Analysis_full_database.ipynb) <br>
 
-<!-- Objectifs:
-Entrainer un modèle de scoring à partir de données clients ayant contracté des prêts bancaires. Les clients sont labellisés 0 (bon payeur) ou 1 (défaut de paiement)
-Implémenter le modèle dans une application web explicant le score
-Prétraitement:
-Utilisation du script de AGUIAR sur KAGGLE : https://www.kaggle.com/jsaguiar/lightgbm-with-simple-features
+#### Modélisation
 
+La base de donnée est très déséquilibrée en terme de cible, 91.2 % de bon clients, il faut donc prendre en compte se déséquilibrage en terme de choix de modèle et de score d'évaluation. <br>
 Voir le script
 
-Les données sont déséquilibrées (seulement 8% de positifs). j'ai donc essayé de faire un clustering des negatifs (k-means) afin d'en dégager des catégories. Sans succès. j'ai donc décidé d'utiliser un RandomUnderSampler par volonté de faire simple et de réduire la taille du dataset. Les resultats de detection des positifs sont sensiblement améliorés (calcul du f1_score sur la classe 1). -->
+---------------------------
 
-<!-- Voir le script
 
-Modélisation
-Entrainement de modèle avec GridSearch et CrossValidation sur le set resampled (70% des données). f1_score de la classe 1 comme score de référence f1_score de 0.6 sur la classe 1 avec CV sur les données train, re-échantillonnées
-Voir le script
-
-Prediction sur le set de test (30% de données). Obtention f1_score de la classe 1 sur le set sans rééchantillonage : 0.29
-Creation d'un score de perte en montant avec des valeurs arbitraires de pertes en fonction de l'erreur.
+<!-- Creation d'un score de perte en montant avec des valeurs arbitraires de pertes en fonction de l'erreur.
 Voir fonction 'Loss Score'
 
 Determination des seuils en se basant sur les valeurs de pertes. Rappel: n'étant pas banquier, je ne peux garantir que les seuils soient cohérents avec une vision métier, la fonction de perte ainsi que les seuils doivent être réalisés avec un expert bancaire
