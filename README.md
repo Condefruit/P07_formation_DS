@@ -34,7 +34,7 @@ Avec un score d'accuracy ((TP+TN)/(𝑇𝑃+𝑇𝑁+𝐹𝑃+𝐹𝑁)) et un m
 Je compare donc différents scores (roc_auc / fbeta / score personnalisé {pour coller au mieux aux cahier des charges}) et différents modèles (dont des modèles qui gèrent le déséquilibre {dit "cost sensitive"} et des algorithmes de type "SMOTE" pour rééquilibrer la base de données) afin de donner le plus d'importance à la classe minoritaire. <br>
 Voir le script [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_comparaison_scores_modèles.ipynb). <br>
 
-Pour expliciter le modèle et permettre aux chargés de clientèles de faire un retour clair au client, j'utilise la librairie SHAP (Shapley Additive exPlanations). Je propose aussi évaluation du bénéfice (fonction à retravailler avec retour métier) en fonction du seuil de classification choisis. <br>
+Pour expliciter le modèle et permettre aux chargés de clientèles de faire un retour clair au client, j'utilise la librairie SHAP (Shapley Additive exPlanations). Je propose aussi une évaluation du bénéfice (fonction à retravailler avec retour métier) en fonction du seuil de classification choisis. <br>
 Liens vers le [script](https://github.com/Condefruit/P07_formation_DS/blob/main/P7_shap.ipynb).
 
 ---------------------------
